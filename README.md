@@ -1,26 +1,47 @@
 # NUTRISCAN
-Plataforma digital integral para administrar la alimentación y operación de bares escolares, supervisar la nutrición estudiantil y generar sistemas de recompensas innovadores mediante tecnología Web3.
+Plataforma inteligente de alimentación escolar para monitoreo nutricional, pagos internos, alertas preventivas y gamificación saludable.
 # Integrantes
 – Líder: David Núnez 
  – Secretario: Carlos Cruz
  – Diseñador: Amelia Bueno 
  – Investigador: Valentina Hernández
 # Problema que se quiere resolver
-En la comunidad educativa de Eight Academy, una gran parte de los estudiantes y sus familias carecen de herramientas integradas para monitorear la ingesta biomédica escolar. Esta problemática se extiende a las empresas prestadoras de servicios de catering, las cuales, a pesar de contar con eficientes sistemas de pago digital contables, no disponen de una tecnología que vincule de manera automatizada esas transacciones con el balance de alérgenos y nutrientes del menor.
+En Eight Academy se identifican diversas situaciones relacionadas con la alimentación escolar que pueden afectar el bienestar de los estudiantes:
+Padres sin información inmediata
+Estudiantes que no comen a tiempo
+Filas largas en el bar escolar
+Riesgos por alergias o restricciones alimenticias
+Falta de seguimiento nutricional organizado
+Baja motivación hacia hábitos saludables
 # Propuesta de solución y cómo funciona.
-La solución a esta problemática es NutriScan, un ecosistema modular de salud escolar desarrollado como una plataforma SaaS (Software as a Service) de precisión biomédica. NutriScan no opera como un monedero financiero independiente, sino como una capa de inteligencia de salud que se integra de manera automatizada a las pasarelas de pago existentes en los bares escolares (como Paymon) a través de Webhooks y APIs tipo REST, transformando transacciones financieras en balances nutricionales automatizados, predictivos y gamificados.
+La solución propuesta es NutriScan, una plataforma inteligente de alimentación escolar que conecta tecnología, nutrición y educación.
 # Solución propuesta
-El ecosistema se despliega a través de cuatro componentes principales y un flujo operativo en tiempo real:
-A. Balance Clínico Automatizado: Desglose invisible de macro y micronutrientes por plato consumido.
-B. Visualización Dinámica (Digital Twins): Avatar interactivo en 3D que cambia su aspecto físico y energético en la app familiar de acuerdo con la nutrición del alumno.
-C. Filtros Inmutables de Alergias: Bloqueo automatizado de compras basado en categorías de riesgo preconfiguradas.
-D. Recompensas de Impacto Social: Acumulación de tokens Web3 por sostener dietas equilibradas.
+NutriScan permite:
+Identificar estudiantes de forma rápida
+Consultar saldo, lunch, alergias y menú
+Registrar historial de consumo
+Realizar pagos internos desde NutriScan Wallet
+Generar EightCoins por hábitos saludables
+Mostrar el estado del estudiante mediante un Avatar Nutricional
+Enviar alertas a padres, docentes y nutricionista
+Programar citas nutricionales
+Proteger información mediante Blockchain.
 # ODS al que se vincula
-ODS 2: Hambre Cero (Nutrición Adecuada)
-ODS 3: Salud y Bienestar (Seguridad Escolar)
-ODS 9: Industria, Innovación e Infraestructura (Tecnología e Infraestructura Escolar)
+ODS 2: Hambre Cero (Nutrición adecuada y hábitos saludables)
+ODS 3: Salud y Bienestar (Seguridad alimentaria y prevención)
+ODS 9: Industria, Innovación e Infraestructura (Tecnología aplicada a la educación)
 # Tecnologías que se usarán
-Inteligencia Artificial (Algoritmo Predictivo y Digital Twin)
-Conexión por APIs y Webhooks (Integración con Paymon)
-Tecnología Blockchain (Contratos Inteligentes)
-Interfaz Táctil Interactiva (Tótem Express)
+Inteligencia Artificial.
+Blockchain.
+NutriScan Wallet.
+EightCoins.
+Desarrollo web.
+Base de datos en la nube.
+Firebase.
+Dashboards interactivos.
+Diseño UI/UX.
+Código QR.
+Código SAP.
+Avatar Nutricional Interactivo.
+Tótem Inteligente.
+Paneles Inteligentes;
