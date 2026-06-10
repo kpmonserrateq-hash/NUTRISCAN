@@ -150,18 +150,132 @@
         .lp-btn-white:hover { background: #f4f8ff; }
         .lp-btn-blue .ic { background: #fff; color: #2563EB; width: 26px; height: 26px; border-radius: 50%; display: flex; align-items: center; justify-content: center; }
         .lp-hero { background: linear-gradient(135deg,#EAF3FB 0%,#EEF4FF 45%,#F4F7FF 100%); position: relative; overflow: hidden; }
-        .lp-hero-inner { display: grid; grid-template-columns: minmax(0,500px) 1fr; gap: 32px; align-items: center; max-width: 1380px; margin: 0 auto; padding: 56px 32px 64px; }
-        .lp-hero h1 { font-size: 47px; line-height: 1.08; font-weight: 800; letter-spacing: -1.4px; }
+        .lp-hero { min-height: 580px; }
+        .lp-hero-inner { display: grid; grid-template-columns: minmax(0,460px) 1fr; gap: 28px; align-items: center; max-width: 1380px; margin: 0 auto; padding: 48px 32px 56px; }
+        .lp-hero h1 { font-size: 44px; line-height: 1.08; font-weight: 800; letter-spacing: -1.4px; }
         .lp-hero h1 .l1 { color: #2563EB; } .lp-hero h1 .l2 { color: #16A34A; }
-        .lp-hero p.lede { margin-top: 20px; font-size: 17px; line-height: 1.6; color: #3f4860; max-width: 430px; font-weight: 400; }
-        .lp-hero-btns { display: flex; gap: 14px; margin-top: 28px; flex-wrap: wrap; }
-        .lp-badges { display: flex; gap: 9px; margin-top: 30px; flex-wrap: wrap; }
+        .lp-hero p.lede { margin-top: 18px; font-size: 16px; line-height: 1.6; color: #3f4860; max-width: 400px; font-weight: 400; }
+        .lp-hero-btns { display: flex; gap: 14px; margin-top: 26px; flex-wrap: wrap; }
+        .lp-badges { display: flex; gap: 9px; margin-top: 26px; flex-wrap: wrap; }
         .lp-badge { background: #fff; border-radius: 13px; padding: 9px 11px; display: flex; align-items: center; gap: 8px; box-shadow: 0 4px 14px rgba(22,33,92,.06); }
         .lp-badge .bi { width: 30px; height: 30px; border-radius: 8px; background: #E7F6EC; color: #16A34A; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
         .lp-badge .bt { font-size: 12px; font-weight: 700; color: #16215C; line-height: 1.15; }
         .lp-badge .bs { font-size: 10px; color: #7a8398; font-weight: 400; }
-        .lp-hero-art { display: flex; justify-content: center; align-items: center; }
-        .lp-hero-art img { width: 75%; max-width: 340px; filter: drop-shadow(0 20px 40px rgba(22,163,74,.18)); }
+
+        /* Hero art composition */
+        .lp-hero-art { position: relative; height: 500px; display: flex; align-items: center; justify-content: center; }
+
+        @keyframes floatA { 0%,100%{transform:translateY(0)} 50%{transform:translateY(-10px)} }
+        @keyframes floatB { 0%,100%{transform:translateY(0)} 50%{transform:translateY(-7px)} }
+        @keyframes floatC { 0%,100%{transform:translateY(0)} 50%{transform:translateY(-13px)} }
+        @keyframes fadeUp { from{opacity:0;transform:translateY(20px)} to{opacity:1;transform:translateY(0)} }
+
+        /* Main dashboard card */
+        .hc-main { position:absolute; top:50%; left:50%; transform:translate(-52%,-50%);
+            width:300px; background:#fff; border-radius:18px;
+            box-shadow:0 24px 60px rgba(22,33,92,.16), 0 8px 20px rgba(22,33,92,.08);
+            overflow:hidden; animation:floatA 4.5s ease-in-out infinite, fadeUp .6s ease .1s both; }
+        .hc-main:hover { box-shadow:0 32px 72px rgba(22,33,92,.22); transform:translate(-52%,-52%) scale(1.02); transition:all .3s; }
+        .hc-main-header { background:linear-gradient(135deg,#16215C,#2563EB); padding:14px 16px; display:flex; align-items:center; gap:10px; }
+        .hc-main-header img { width:28px; height:28px; object-fit:contain; border-radius:6px; }
+        .hc-main-header .title { color:#fff; font-weight:700; font-size:13px; }
+        .hc-main-header .sub { color:rgba(255,255,255,.65); font-size:10px; }
+        .hc-main-body { padding:14px 16px; }
+        .hc-avatar-row { display:flex; align-items:center; gap:10px; margin-bottom:12px; padding-bottom:12px; border-bottom:1px solid #f1f5f9; }
+        .hc-avatar-row img { width:38px; height:38px; object-fit:contain; }
+        .hc-avatar-name { font-size:12px; font-weight:700; color:#16215C; }
+        .hc-avatar-status { font-size:10px; color:#16A34A; font-weight:600; background:#E7F6EC; padding:2px 7px; border-radius:99px; display:inline-block; margin-top:2px; }
+        .hc-bar-row { margin-bottom:8px; }
+        .hc-bar-label { display:flex; justify-content:space-between; font-size:10px; font-weight:600; color:#5B6478; margin-bottom:3px; }
+        .hc-bar-bg { height:6px; background:#f1f5f9; border-radius:99px; overflow:hidden; }
+        .hc-bar-fill { height:100%; border-radius:99px; }
+        .hc-stats-row { display:grid; grid-template-columns:repeat(3,1fr); gap:6px; margin-top:12px; }
+        .hc-stat { background:#f8faff; border-radius:10px; padding:8px 6px; text-align:center; }
+        .hc-stat .val { font-size:14px; font-weight:800; color:#2563EB; }
+        .hc-stat .lbl { font-size:9px; color:#5B6478; font-weight:600; text-transform:uppercase; letter-spacing:.04em; }
+
+        /* Phone mockup */
+        .hc-phone { position:absolute; top:50%; left:4%; transform:translateY(-44%);
+            width:118px; background:#fff; border-radius:22px;
+            box-shadow:0 16px 40px rgba(22,33,92,.14), 0 4px 12px rgba(22,33,92,.08);
+            overflow:hidden; border:2px solid #e8edf5;
+            animation:floatB 5.5s ease-in-out infinite, fadeUp .6s ease .3s both; }
+        .hc-phone:hover { transform:translateY(-48%) scale(1.04); transition:all .3s; }
+        .hc-phone-notch { width:36px; height:8px; background:#e8edf5; border-radius:99px; margin:8px auto 6px; }
+        .hc-phone-body { padding:0 8px 12px; }
+        .hc-phone-head { background:linear-gradient(135deg,#16A34A,#22c55e); border-radius:10px; padding:8px; margin-bottom:8px; text-align:center; }
+        .hc-phone-head .ph-title { font-size:9px; font-weight:800; color:#fff; text-transform:uppercase; letter-spacing:.05em; }
+        .hc-phone-head .ph-coin { font-size:16px; font-weight:900; color:#fff; margin-top:2px; }
+        .hc-phone-head .ph-sub { font-size:8px; color:rgba(255,255,255,.8); }
+        .hc-qr { background:#f8faff; border-radius:8px; padding:6px; margin-bottom:6px; }
+        .hc-qr-grid { display:grid; grid-template-columns:repeat(6,1fr); gap:2px; margin:0 auto; width:60px; }
+        .hc-qr-cell { aspect-ratio:1; border-radius:1px; }
+        .hc-phone-scan { font-size:8px; font-weight:600; color:#2563EB; text-align:center; }
+
+        /* Alert card */
+        .hc-alert { position:absolute; top:6%; right:2%;
+            width:190px; background:#fff; border-radius:14px;
+            box-shadow:0 12px 32px rgba(22,33,92,.12); padding:12px;
+            animation:floatC 3.8s ease-in-out infinite, fadeUp .6s ease .5s both; }
+        .hc-alert:hover { box-shadow:0 18px 40px rgba(22,33,92,.18); transform:scale(1.03); transition:all .3s; }
+        .hc-alert-head { display:flex; align-items:center; gap:6px; margin-bottom:8px; }
+        .hc-alert-dot { width:28px; height:28px; border-radius:8px; background:#FEF2F2; display:flex; align-items:center; justify-content:center; font-size:14px; flex-shrink:0; }
+        .hc-alert-title { font-size:11px; font-weight:700; color:#DC2626; }
+        .hc-alert-sub { font-size:9.5px; color:#5B6478; margin-top:1px; }
+        .hc-alert-msg { font-size:10px; color:#374151; line-height:1.4; background:#FEF2F2; border-radius:8px; padding:6px 8px; }
+        .hc-alert-footer { display:flex; gap:5px; margin-top:8px; }
+        .hc-alert-btn { flex:1; font-size:9px; font-weight:700; padding:5px; border-radius:6px; border:none; cursor:pointer; }
+        .hc-alert-btn.primary { background:#16A34A; color:#fff; }
+        .hc-alert-btn.secondary { background:#f1f5f9; color:#5B6478; }
+
+        /* Coins card */
+        .hc-coins { position:absolute; bottom:10%; left:2%;
+            width:160px; background:linear-gradient(135deg,#16215C,#1e3a8a); border-radius:14px;
+            box-shadow:0 12px 32px rgba(22,33,92,.2); padding:14px;
+            animation:floatA 4s ease-in-out infinite 1s, fadeUp .6s ease .4s both; }
+        .hc-coins:hover { transform:scale(1.04) translateY(-2px); transition:all .3s; }
+        .hc-coins-label { font-size:9px; font-weight:700; color:rgba(255,255,255,.6); text-transform:uppercase; letter-spacing:.07em; }
+        .hc-coins-val { font-size:26px; font-weight:900; color:#fff; margin:3px 0; }
+        .hc-coins-ec { font-size:11px; font-weight:700; color:#FCD34D; }
+        .hc-coins-bar { margin-top:10px; }
+        .hc-coins-bar-bg { height:4px; background:rgba(255,255,255,.15); border-radius:99px; overflow:hidden; }
+        .hc-coins-bar-fill { height:100%; width:63%; background:linear-gradient(90deg,#34d399,#22c55e); border-radius:99px; }
+        .hc-coins-bar-label { display:flex; justify-content:space-between; font-size:8px; color:rgba(255,255,255,.5); margin-top:3px; }
+
+        /* Chart card */
+        .hc-chart { position:absolute; bottom:4%; right:3%;
+            width:185px; background:#fff; border-radius:14px;
+            box-shadow:0 12px 32px rgba(22,33,92,.12); padding:12px;
+            animation:floatB 5s ease-in-out infinite .5s, fadeUp .6s ease .6s both; }
+        .hc-chart:hover { box-shadow:0 20px 44px rgba(22,33,92,.18); transform:scale(1.03); transition:all .3s; }
+        .hc-chart-title { font-size:11px; font-weight:700; color:#16215C; margin-bottom:10px; display:flex; align-items:center; gap:5px; }
+        .hc-chart-bars { display:flex; align-items:flex-end; gap:5px; height:52px; }
+        .hc-chart-bar { flex:1; border-radius:4px 4px 0 0; transition:height .5s ease; }
+        .hc-chart-days { display:flex; gap:5px; margin-top:4px; }
+        .hc-chart-day { flex:1; font-size:8px; color:#9aa3b8; text-align:center; font-weight:600; }
+
+        /* Menu card */
+        .hc-menu { position:absolute; top:5%; left:28%;
+            width:165px; background:#fff; border-radius:14px;
+            box-shadow:0 10px 28px rgba(22,33,92,.10); padding:10px;
+            animation:floatC 4.2s ease-in-out infinite .8s, fadeUp .6s ease .2s both; }
+        .hc-menu:hover { box-shadow:0 16px 36px rgba(22,33,92,.16); transform:scale(1.03); transition:all .3s; }
+        .hc-menu-title { font-size:10px; font-weight:700; color:#16215C; margin-bottom:7px; display:flex; align-items:center; gap:4px; }
+        .hc-menu-item { display:flex; align-items:center; gap:6px; padding:4px 0; border-bottom:1px solid #f8faff; }
+        .hc-menu-item:last-child { border-bottom:none; }
+        .hc-menu-item .icon { font-size:14px; }
+        .hc-menu-item .name { font-size:10px; font-weight:600; color:#374151; }
+        .hc-menu-item .cal { font-size:9px; color:#9aa3b8; margin-left:auto; }
+
+        /* Notification bubble */
+        .hc-notif { position:absolute; top:36%; right:1%;
+            background:#7C3AED; color:#fff; border-radius:14px;
+            box-shadow:0 8px 24px rgba(124,58,237,.3); padding:10px 12px; width:170px;
+            animation:floatA 3.5s ease-in-out infinite 1.5s, fadeUp .6s ease .7s both; }
+        .hc-notif:hover { transform:scale(1.04) translateY(-2px); transition:all .3s; }
+        .hc-notif-head { font-size:9px; font-weight:700; opacity:.8; text-transform:uppercase; letter-spacing:.06em; margin-bottom:4px; display:flex; align-items:center; gap:4px; }
+        .hc-notif-msg { font-size:11px; font-weight:600; line-height:1.35; }
+        .hc-notif-time { font-size:9px; opacity:.65; margin-top:5px; }
         .lp-community { padding: 18px 0 64px; }
         .lp-panel { background: #fff; border-radius: 26px; box-shadow: 0 10px 30px rgba(22,33,92,.08); padding: 40px 36px 34px; margin-top: -26px; position: relative; z-index: 2; }
         .lp-sec-head { text-align: center; margin-bottom: 30px; }
@@ -199,16 +313,25 @@
         .lm-btn:hover { background: #138a3c; }
         @media (max-width: 920px) {
             .lp-links, .lp-cta { display: none; }
-            .lp-hero-inner { grid-template-columns: 1fr; gap: 30px; }
-            .lp-hero h1 { font-size: 38px; }
-            .lp-hero-art { order: -1; }
+            .lp-hero-inner { grid-template-columns: 1fr; gap: 24px; }
+            .lp-hero h1 { font-size: 36px; }
+            .lp-hero-art { order: -1; height: 320px; }
+            .hc-main { width: 220px; }
+            .hc-phone { left: 1%; width: 96px; }
+            .hc-alert { width: 155px; font-size: 9px; }
+            .hc-notif { width: 145px; }
+            .hc-menu { display: none; }
             .lp-roles { grid-template-columns: repeat(2,1fr); }
             .lp-feat-bar { grid-template-columns: repeat(2,1fr); }
             .lp-feat:nth-child(2)::after { display: none; }
         }
         @media (max-width: 560px) {
             .lp-wrap, .lp-nav-inner, .lp-hero-inner { padding-left: 18px; padding-right: 18px; }
-            .lp-hero h1 { font-size: 30px; }
+            .lp-hero h1 { font-size: 28px; }
+            .lp-hero-art { height: 260px; }
+            .hc-coins { display: none; }
+            .hc-chart { display: none; }
+            .hc-notif { display: none; }
             .lp-roles { grid-template-columns: 1fr; }
             .lp-feat-bar { grid-template-columns: 1fr; }
             .lp-feat::after { display: none !important; }
@@ -284,7 +407,173 @@
                 </div>
             </div>
             <div class="lp-hero-art">
-                <img src="lp-hero.jpeg" alt="NutriScan App" onerror="this.src='AVATAR SALUDABLE.png'">
+
+                <!-- ── CARD PRINCIPAL: Dashboard ── -->
+                <div class="hc-main">
+                    <div class="hc-main-header">
+                        <img src="lp-logo.png" onerror="this.style.display='none'">
+                        <div>
+                            <div class="title">NutriScan Dashboard</div>
+                            <div class="sub">Eight Academy · Hoy</div>
+                        </div>
+                    </div>
+                    <div class="hc-main-body">
+                        <div class="hc-avatar-row">
+                            <img src="AVATAR SALUDABLE.png" onerror="this.src='Logotipo.png'">
+                            <div>
+                                <div class="hc-avatar-name">Carlos M. · 5A</div>
+                                <span class="hc-avatar-status">✅ Estado saludable</span>
+                            </div>
+                        </div>
+                        <div class="hc-bar-row">
+                            <div class="hc-bar-label"><span>Proteínas</span><span style="color:#16A34A">76%</span></div>
+                            <div class="hc-bar-bg"><div class="hc-bar-fill" style="width:76%;background:#16A34A"></div></div>
+                        </div>
+                        <div class="hc-bar-row">
+                            <div class="hc-bar-label"><span>Carbohidratos</span><span style="color:#2563EB">88%</span></div>
+                            <div class="hc-bar-bg"><div class="hc-bar-fill" style="width:88%;background:#2563EB"></div></div>
+                        </div>
+                        <div class="hc-bar-row">
+                            <div class="hc-bar-label"><span>Vitaminas</span><span style="color:#F59E0B">62%</span></div>
+                            <div class="hc-bar-bg"><div class="hc-bar-fill" style="width:62%;background:#F59E0B"></div></div>
+                        </div>
+                        <div class="hc-bar-row">
+                            <div class="hc-bar-label"><span>Hidratación</span><span style="color:#7C3AED">54%</span></div>
+                            <div class="hc-bar-bg"><div class="hc-bar-fill" style="width:54%;background:#7C3AED"></div></div>
+                        </div>
+                        <div class="hc-stats-row">
+                            <div class="hc-stat"><div class="val">183</div><div class="lbl">Registros</div></div>
+                            <div class="hc-stat"><div class="val" style="color:#F59E0B">1.25K</div><div class="lbl">EC</div></div>
+                            <div class="hc-stat"><div class="val" style="color:#16A34A">7d</div><div class="lbl">Racha</div></div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- ── PHONE MOCKUP ── -->
+                <div class="hc-phone">
+                    <div class="hc-phone-notch"></div>
+                    <div class="hc-phone-body">
+                        <div class="hc-phone-head">
+                            <div class="ph-title">EightCoins</div>
+                            <div class="ph-coin">1.250 🌽</div>
+                            <div class="ph-sub">+15 EC hoy</div>
+                        </div>
+                        <div class="hc-qr">
+                            <!-- QR simulado -->
+                            <svg width="60" height="60" viewBox="0 0 60 60" style="display:block;margin:0 auto" xmlns="http://www.w3.org/2000/svg">
+                                <rect width="60" height="60" fill="#f8faff"/>
+                                <!-- Corner squares -->
+                                <rect x="4" y="4" width="16" height="16" rx="2" fill="#16215C"/>
+                                <rect x="6" y="6" width="12" height="12" rx="1" fill="#f8faff"/>
+                                <rect x="8" y="8" width="8" height="8" rx="1" fill="#16215C"/>
+                                <rect x="40" y="4" width="16" height="16" rx="2" fill="#16215C"/>
+                                <rect x="42" y="6" width="12" height="12" rx="1" fill="#f8faff"/>
+                                <rect x="44" y="8" width="8" height="8" rx="1" fill="#16215C"/>
+                                <rect x="4" y="40" width="16" height="16" rx="2" fill="#16215C"/>
+                                <rect x="6" y="42" width="12" height="12" rx="1" fill="#f8faff"/>
+                                <rect x="8" y="44" width="8" height="8" rx="1" fill="#16215C"/>
+                                <!-- Data dots -->
+                                <rect x="24" y="4" width="4" height="4" rx="1" fill="#16215C"/>
+                                <rect x="30" y="4" width="4" height="4" rx="1" fill="#16215C"/>
+                                <rect x="24" y="10" width="4" height="4" rx="1" fill="#16215C"/>
+                                <rect x="32" y="10" width="4" height="4" rx="1" fill="#16215C"/>
+                                <rect x="24" y="24" width="4" height="4" rx="1" fill="#16215C"/>
+                                <rect x="30" y="24" width="4" height="4" rx="1" fill="#16215C"/>
+                                <rect x="36" y="24" width="4" height="4" rx="1" fill="#16215C"/>
+                                <rect x="24" y="30" width="4" height="4" rx="1" fill="#16215C"/>
+                                <rect x="32" y="30" width="4" height="4" rx="1" fill="#16215C"/>
+                                <rect x="24" y="36" width="4" height="4" rx="1" fill="#16215C"/>
+                                <rect x="30" y="36" width="4" height="4" rx="1" fill="#16215C"/>
+                                <rect x="36" y="30" width="4" height="4" rx="1" fill="#16215C"/>
+                                <rect x="4" y="24" width="4" height="4" rx="1" fill="#16215C"/>
+                                <rect x="10" y="24" width="4" height="4" rx="1" fill="#16215C"/>
+                                <rect x="16" y="24" width="4" height="4" rx="1" fill="#16215C"/>
+                                <rect x="4" y="30" width="4" height="4" rx="1" fill="#16215C"/>
+                                <rect x="10" y="32" width="4" height="4" rx="1" fill="#16215C"/>
+                                <rect x="4" y="36" width="4" height="4" rx="1" fill="#16215C"/>
+                                <rect x="40" y="24" width="4" height="4" rx="1" fill="#16215C"/>
+                                <rect x="46" y="24" width="4" height="4" rx="1" fill="#16215C"/>
+                                <rect x="52" y="24" width="4" height="4" rx="1" fill="#16215C"/>
+                                <rect x="42" y="30" width="4" height="4" rx="1" fill="#16215C"/>
+                                <rect x="50" y="30" width="4" height="4" rx="1" fill="#16215C"/>
+                                <rect x="44" y="36" width="4" height="4" rx="1" fill="#16215C"/>
+                                <rect x="52" y="36" width="4" height="4" rx="1" fill="#16215C"/>
+                                <!-- SAP label -->
+                                <text x="30" y="56" text-anchor="middle" font-size="5" fill="#5B6478" font-family="Poppins,sans-serif" font-weight="600">QR · SAP</text>
+                            </svg>
+                        </div>
+                        <div class="hc-phone-scan">Escanear lunch →</div>
+                    </div>
+                </div>
+
+                <!-- ── ALERT CARD ── -->
+                <div class="hc-alert">
+                    <div class="hc-alert-head">
+                        <div class="hc-alert-dot">⚠️</div>
+                        <div>
+                            <div class="hc-alert-title">Alerta Inteligente</div>
+                            <div class="hc-alert-sub">Detección automática · IA</div>
+                        </div>
+                    </div>
+                    <div class="hc-alert-msg">Alérgeno detectado: <strong>Maní</strong> en el menú de hoy. Notificación enviada a representante.</div>
+                    <div class="hc-alert-footer">
+                        <button class="hc-alert-btn primary">Notificar</button>
+                        <button class="hc-alert-btn secondary">Cambiar menú</button>
+                    </div>
+                </div>
+
+                <!-- ── EIGHTCOINS WALLET ── -->
+                <div class="hc-coins">
+                    <div class="hc-coins-label">Mi NutriWallet</div>
+                    <div class="hc-coins-val">1.250</div>
+                    <div class="hc-coins-ec">🌽 EightCoins · +15 hoy</div>
+                    <div class="hc-coins-bar">
+                        <div class="hc-coins-bar-bg"><div class="hc-coins-bar-fill"></div></div>
+                        <div class="hc-coins-bar-label"><span>0</span><span>Meta: 2.000</span></div>
+                    </div>
+                </div>
+
+                <!-- ── CHART SEMANAL ── -->
+                <div class="hc-chart">
+                    <div class="hc-chart-title">
+                        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#2563EB" stroke-width="2.5" stroke-linecap="round"><path d="M3 12h4l2-5 3 9 2-4h7"/></svg>
+                        Salud semanal
+                    </div>
+                    <div class="hc-chart-bars">
+                        <div class="hc-chart-bar" style="height:45%;background:#dbeafe"></div>
+                        <div class="hc-chart-bar" style="height:65%;background:#bfdbfe"></div>
+                        <div class="hc-chart-bar" style="height:50%;background:#93c5fd"></div>
+                        <div class="hc-chart-bar" style="height:80%;background:#60a5fa"></div>
+                        <div class="hc-chart-bar" style="height:70%;background:#3b82f6"></div>
+                        <div class="hc-chart-bar" style="height:90%;background:#2563EB"></div>
+                        <div class="hc-chart-bar" style="height:75%;background:#1d4ed8"></div>
+                    </div>
+                    <div class="hc-chart-days">
+                        <span class="hc-chart-day">L</span><span class="hc-chart-day">M</span><span class="hc-chart-day">X</span><span class="hc-chart-day">J</span><span class="hc-chart-day">V</span><span class="hc-chart-day">S</span><span class="hc-chart-day">D</span>
+                    </div>
+                </div>
+
+                <!-- ── MENÚ SALUDABLE ── -->
+                <div class="hc-menu">
+                    <div class="hc-menu-title">
+                        <span>🍽️</span> Menú de hoy
+                    </div>
+                    <div class="hc-menu-item"><span class="icon">🥗</span><span class="name">Ensalada verde</span><span class="cal">120 kcal</span></div>
+                    <div class="hc-menu-item"><span class="icon">🍗</span><span class="name">Pollo a la plancha</span><span class="cal">220 kcal</span></div>
+                    <div class="hc-menu-item"><span class="icon">🍚</span><span class="name">Arroz integral</span><span class="cal">180 kcal</span></div>
+                    <div class="hc-menu-item"><span class="icon">🍎</span><span class="name">Fruta del día</span><span class="cal">65 kcal</span></div>
+                </div>
+
+                <!-- ── NOTIFICACIÓN PADRES ── -->
+                <div class="hc-notif">
+                    <div class="hc-notif-head">
+                        <svg width="10" height="10" viewBox="0 0 24 24" fill="white"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9M13.73 21a2 2 0 0 1-3.46 0"/></svg>
+                        Notificación para padres
+                    </div>
+                    <div class="hc-notif-msg">Carlos almorzó hoy ✅ Comida saludable registrada a las 12:32 PM</div>
+                    <div class="hc-notif-time">Hace 2 minutos · NutriScan</div>
+                </div>
+
             </div>
         </div>
     </section>
