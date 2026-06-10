@@ -6,7 +6,7 @@
     <title>NutriScan — Alimentación Escolar Inteligente</title>
     <script src="https://cdn.tailwindcss.com/3.4.17"></script>
     <script src="https://cdn.jsdelivr.net/npm/lucide@0.263.0/dist/umd/lucide.min.js"></script>
-    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700;800;900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700;800;900&family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 
     <style>
         :root {
@@ -121,45 +121,285 @@
             .main-content { margin-left: 0; padding: 20px; }
             .footer-bar { margin-left: 0 !important; }
         }
+
+        /* ===================== LANDING PAGE ===================== */
+        .lp { font-family: 'Poppins', sans-serif; background: #F7F8FA; color: #1f2640; }
+        .lp-wrap { max-width: 1320px; margin: 0 auto; padding: 0 32px; }
+        .lp-nav { position: sticky; top: 0; z-index: 50; background: #fff; box-shadow: 0 1px 0 rgba(22,33,92,.06); }
+        .lp-nav-inner { display: flex; align-items: center; gap: 28px; max-width: 1380px; margin: 0 auto; padding: 12px 32px; }
+        .lp-brand { display: flex; align-items: center; gap: 12px; flex-shrink: 0; }
+        .lp-brand img { height: 46px; width: auto; }
+        .lp-brand .word { font-weight: 800; font-size: 27px; line-height: 1; letter-spacing: -.5px; }
+        .lp-brand .word .n { color: #16215C; } .lp-brand .word .s { color: #16A34A; }
+        .lp-brand .tag { font-size: 7.5px; font-weight: 700; letter-spacing: 1.5px; color: #2563EB; margin-top: 3px; }
+        .lp-brand .tag .dot { color: #9aa3b8; }
+        .lp-links { display: flex; align-items: center; gap: 26px; margin-left: 14px; }
+        .lp-links a { font-size: 14px; font-weight: 500; color: #3a4252; display: flex; align-items: center; gap: 7px; padding: 6px 0; position: relative; cursor: pointer; }
+        .lp-links a:hover { color: #2563EB; }
+        .lp-links a.active { color: #2563EB; font-weight: 600; }
+        .lp-links a.active::after { content: ""; position: absolute; left: 0; right: 0; bottom: -8px; height: 3px; background: #2563EB; border-radius: 3px; }
+        .lp-cta { margin-left: auto; display: flex; align-items: center; gap: 12px; flex-shrink: 0; }
+        .lp-btn { font-family: 'Poppins', sans-serif; font-weight: 600; font-size: 14px; border: none; cursor: pointer; border-radius: 11px; display: inline-flex; align-items: center; gap: 9px; transition: .18s; }
+        .lp-btn-ghost { background: #fff; color: #2563EB; border: 1.5px solid #cdd8f0; padding: 9px 20px; }
+        .lp-btn-ghost:hover { background: #f3f7ff; }
+        .lp-btn-green { background: #16A34A; color: #fff; padding: 10px 22px; }
+        .lp-btn-green:hover { background: #138a3c; }
+        .lp-btn-blue { background: #2563EB; color: #fff; padding: 13px 24px; font-size: 15px; box-shadow: 0 8px 20px rgba(37,99,235,.25); }
+        .lp-btn-blue:hover { background: #1d54d6; }
+        .lp-btn-white { background: #fff; color: #2563EB; padding: 13px 24px; font-size: 15px; box-shadow: 0 4px 14px rgba(22,33,92,.06); }
+        .lp-btn-white:hover { background: #f4f8ff; }
+        .lp-btn-blue .ic { background: #fff; color: #2563EB; width: 26px; height: 26px; border-radius: 50%; display: flex; align-items: center; justify-content: center; }
+        .lp-hero { background: linear-gradient(135deg,#EAF3FB 0%,#EEF4FF 45%,#F4F7FF 100%); position: relative; overflow: hidden; }
+        .lp-hero-inner { display: grid; grid-template-columns: minmax(0,500px) 1fr; gap: 32px; align-items: center; max-width: 1380px; margin: 0 auto; padding: 56px 32px 64px; }
+        .lp-hero h1 { font-size: 47px; line-height: 1.08; font-weight: 800; letter-spacing: -1.4px; }
+        .lp-hero h1 .l1 { color: #2563EB; } .lp-hero h1 .l2 { color: #16A34A; }
+        .lp-hero p.lede { margin-top: 20px; font-size: 17px; line-height: 1.6; color: #3f4860; max-width: 430px; font-weight: 400; }
+        .lp-hero-btns { display: flex; gap: 14px; margin-top: 28px; flex-wrap: wrap; }
+        .lp-badges { display: flex; gap: 9px; margin-top: 30px; flex-wrap: wrap; }
+        .lp-badge { background: #fff; border-radius: 13px; padding: 9px 11px; display: flex; align-items: center; gap: 8px; box-shadow: 0 4px 14px rgba(22,33,92,.06); }
+        .lp-badge .bi { width: 30px; height: 30px; border-radius: 8px; background: #E7F6EC; color: #16A34A; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+        .lp-badge .bt { font-size: 12px; font-weight: 700; color: #16215C; line-height: 1.15; }
+        .lp-badge .bs { font-size: 10px; color: #7a8398; font-weight: 400; }
+        .lp-hero-art { display: flex; justify-content: center; align-items: center; }
+        .lp-hero-art img { width: 75%; max-width: 340px; filter: drop-shadow(0 20px 40px rgba(22,163,74,.18)); }
+        .lp-community { padding: 18px 0 64px; }
+        .lp-panel { background: #fff; border-radius: 26px; box-shadow: 0 10px 30px rgba(22,33,92,.08); padding: 40px 36px 34px; margin-top: -26px; position: relative; z-index: 2; }
+        .lp-sec-head { text-align: center; margin-bottom: 30px; }
+        .lp-leaf { width: 34px; height: 34px; margin: 0 auto 6px; color: #16A34A; }
+        .lp-sec-head h2 { font-size: 29px; font-weight: 800; color: #16215C; letter-spacing: -.5px; }
+        .lp-sec-head p { font-size: 15px; color: #5B6478; margin-top: 8px; }
+        .lp-roles { display: grid; grid-template-columns: repeat(4,1fr); gap: 20px; }
+        .lp-role { border-radius: 18px; padding: 24px 22px 0; position: relative; overflow: hidden; min-height: 188px; display: flex; flex-direction: column; }
+        .lp-role .r-icon { width: 42px; height: 42px; border-radius: 11px; display: flex; align-items: center; justify-content: center; margin-bottom: 10px; }
+        .lp-role h3 { font-size: 20px; font-weight: 700; margin-bottom: 10px; }
+        .lp-role p { font-size: 13px; line-height: 1.5; color: #48506a; max-width: 62%; }
+        .lp-role .r-btn { margin-top: auto; margin-bottom: 24px; align-self: flex-start; color: #fff; font-weight: 600; font-family: 'Poppins', sans-serif; font-size: 13px; padding: 9px 18px; border-radius: 10px; cursor: pointer; border: none; transition: opacity .2s; }
+        .lp-role .r-btn:hover { opacity: .85; }
+        .lp-role .r-char { position: absolute; right: -6px; bottom: 0; width: 46%; max-width: 145px; z-index: 1; object-fit: contain; }
+        .lp-role.estudiante { background: linear-gradient(160deg,#EAF6EE,#F4FAF6); }
+        .lp-role.estudiante .r-icon { background: #D6EEDD; color: #16A34A; } .lp-role.estudiante h3 { color: #16A34A; } .lp-role.estudiante .r-btn { background: #16A34A; }
+        .lp-role.padres { background: linear-gradient(160deg,#F1ECFB,#F8F5FD); }
+        .lp-role.padres .r-icon { background: #E5DBFA; color: #7C3AED; } .lp-role.padres h3 { color: #7C3AED; } .lp-role.padres .r-btn { background: #7C3AED; }
+        .lp-role.bar { background: linear-gradient(160deg,#E9F1FB,#F4F8FE); }
+        .lp-role.bar .r-icon { background: #D7E6FB; color: #2563EB; } .lp-role.bar h3 { color: #2563EB; } .lp-role.bar .r-btn { background: #2563EB; }
+        .lp-role.nutri { background: linear-gradient(160deg,#FBF1E4,#FDF8F1); }
+        .lp-role.nutri .r-icon { background: #FBE6CC; color: #EA7A1B; } .lp-role.nutri h3 { color: #EA7A1B; } .lp-role.nutri .r-btn { background: #EA7A1B; }
+        .lp-feat-bar { background: linear-gradient(180deg,#F8FAFF,#F2F6FF); border: 1px solid #eef1fa; border-radius: 18px; margin-top: 26px; padding: 24px 28px; display: grid; grid-template-columns: repeat(4,1fr); gap: 26px; }
+        .lp-feat { display: flex; gap: 15px; align-items: flex-start; position: relative; }
+        .lp-feat:not(:last-child)::after { content: ""; position: absolute; right: -13px; top: 4px; bottom: 4px; width: 1px; background: #e4e9f4; }
+        .lp-feat .f-icon { width: 40px; height: 40px; flex-shrink: 0; display: flex; align-items: center; justify-content: center; position: relative; }
+        .lp-feat h4 { font-size: 14px; font-weight: 700; color: #2563EB; margin-bottom: 4px; }
+        .lp-feat p { font-size: 12.5px; line-height: 1.45; color: #5a6278; }
+        /* Login modal */
+        .lm-overlay { position: fixed; inset: 0; z-index: 9999; display: flex; align-items: center; justify-content: center; background: rgba(22,33,92,.5); backdrop-filter: blur(6px); padding: 16px; }
+        .lm-card { background: #fff; border-radius: 20px; width: 100%; max-width: 420px; padding: 36px; box-shadow: 0 24px 60px rgba(22,33,92,.2); }
+        .lm-input { width: 100%; background: #F7F8FA; border: 1.5px solid #e2e8f0; border-radius: 11px; padding: 12px 16px; font-size: 14px; color: #1f2640; outline: none; transition: border-color .2s; font-family: 'Poppins', sans-serif; }
+        .lm-input:focus { border-color: #16A34A; }
+        .lm-btn { width: 100%; background: #16A34A; color: #fff; font-family: 'Poppins', sans-serif; font-weight: 700; font-size: 14.5px; padding: 13px; border-radius: 11px; border: none; cursor: pointer; transition: background .2s; }
+        .lm-btn:hover { background: #138a3c; }
+        @media (max-width: 920px) {
+            .lp-links, .lp-cta { display: none; }
+            .lp-hero-inner { grid-template-columns: 1fr; gap: 30px; }
+            .lp-hero h1 { font-size: 38px; }
+            .lp-hero-art { order: -1; }
+            .lp-roles { grid-template-columns: repeat(2,1fr); }
+            .lp-feat-bar { grid-template-columns: repeat(2,1fr); }
+            .lp-feat:nth-child(2)::after { display: none; }
+        }
+        @media (max-width: 560px) {
+            .lp-wrap, .lp-nav-inner, .lp-hero-inner { padding-left: 18px; padding-right: 18px; }
+            .lp-hero h1 { font-size: 30px; }
+            .lp-roles { grid-template-columns: 1fr; }
+            .lp-feat-bar { grid-template-columns: 1fr; }
+            .lp-feat::after { display: none !important; }
+            .lp-panel { padding: 28px 18px; }
+            .lp-sec-head h2 { font-size: 22px; }
+        }
     </style>
 </head>
 <body>
 
-<!-- =================== AUTH OVERLAY =================== -->
-<div id="auth-overlay" class="fixed inset-0 z-[9999] flex items-center justify-center px-4" style="background: radial-gradient(ellipse at 50% 0%, rgba(34,197,94,0.08) 0%, #060f06 60%)">
-    <div class="auth-card w-full max-w-md p-8 shadow-2xl">
-        <div class="text-center mb-7">
-            <img src="Logotipo.png" alt="NutriScan" class="w-16 h-16 object-contain mx-auto mb-3" onerror="this.style.display='none'">
-            <h2 id="auth-title" class="text-2xl font-black text-white tracking-tight">Bienvenido a NutriScan</h2>
-            <p id="auth-subtitle" class="text-xs text-slate-400 mt-1">La plataforma de alimentación escolar inteligente</p>
+<!-- =================== LANDING PAGE =================== -->
+<div id="landing-page" class="lp">
+
+    <!-- NAVBAR -->
+    <header class="lp-nav">
+        <div class="lp-nav-inner">
+            <a class="lp-brand" href="#">
+                <img src="Logotipo.png" alt="NutriScan" onerror="this.style.display='none'">
+                <div>
+                    <div class="word"><span class="n">Nutri</span><span class="s">Scan</span></div>
+                    <div class="tag">IDENTIFICA <span class="dot">·</span> PROTEGE <span class="dot">·</span> NUTRE <span class="dot">·</span> CONECTA</div>
+                </div>
+            </a>
+            <nav class="lp-links">
+                <a href="#" class="active">
+                    <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9.5L12 3l9 6.5"/><path d="M5 10v10h14V10"/><path d="M9 20v-6h6v6"/></svg>
+                    Inicio
+                </a>
+                <a href="#como-funciona">¿Cómo funciona?</a>
+                <a href="#roles">Funciones</a>
+                <a href="#beneficios">Beneficios</a>
+                <a href="#equipo">Equipo</a>
+            </nav>
+            <div class="lp-cta">
+                <button class="lp-btn lp-btn-ghost" onclick="openLoginModal(false)">Iniciar sesión</button>
+                <button class="lp-btn lp-btn-green" onclick="openLoginModal(true)">Registrarse</button>
+            </div>
+            <button class="lp-hamb" onclick="openLoginModal(false)" aria-label="Menú">
+                <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#16215C" stroke-width="2.2" stroke-linecap="round"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
+            </button>
         </div>
-        <div class="space-y-4">
+    </header>
+
+    <!-- HERO -->
+    <section class="lp-hero">
+        <div class="lp-hero-inner">
+            <div class="lp-hero-text">
+                <h1><span class="l1">Nutrición inteligente,</span><br><span class="l2">futuro saludable.</span></h1>
+                <p class="lede">NutriScan conecta el bar escolar, la familia y el equipo de salud para cuidar a cada estudiante con tecnología, prevención y recompensas.</p>
+                <div class="lp-hero-btns">
+                    <button class="lp-btn lp-btn-blue" onclick="openLoginModal(true)">
+                        <span class="ic"><svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg></span>
+                        Comenzar ahora
+                    </button>
+                    <button class="lp-btn lp-btn-white" onclick="document.getElementById('roles').scrollIntoView({behavior:'smooth'})">
+                        <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M12 11v5" stroke-linecap="round"/><circle cx="12" cy="7.6" r="1" fill="currentColor" stroke="none"/></svg>
+                        Conoce más
+                    </button>
+                </div>
+                <div class="lp-badges">
+                    <div class="lp-badge">
+                        <span class="bi"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 3a4 4 0 0 0-4 4c0 1 .3 1.8.8 2.5C7.1 10.6 6 12.6 6 15a6 6 0 0 0 12 0c0-2.4-1.1-4.4-2.8-5.5.5-.7.8-1.5.8-2.5a4 4 0 0 0-4-4z" stroke-linejoin="round"/><path d="M12 9v6M9.5 12h5" stroke-linecap="round"/></svg></span>
+                        <div><div class="bt">Inteligencia Artificial</div><div class="bs">Análisis nutricional</div></div>
+                    </div>
+                    <div class="lp-badge">
+                        <span class="bi"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"><path d="M12 2.5 4 6.5v5c0 5 3.5 8.5 8 10 4.5-1.5 8-5 8-10v-5z"/><path d="m9 12 2 2 4-4" stroke-linecap="round"/></svg></span>
+                        <div><div class="bt">Blockchain</div><div class="bs">Seguridad y trazabilidad</div></div>
+                    </div>
+                    <div class="lp-badge">
+                        <span class="bi" style="background:#E7F6EC"><span style="font-weight:800;font-size:11px;color:#16A34A;border:2px solid #16A34A;border-radius:50%;width:22px;height:22px;display:flex;align-items:center;justify-content:center">EC</span></span>
+                        <div><div class="bt">EightCoins</div><div class="bs">Recompensas saludables</div></div>
+                    </div>
+                </div>
+            </div>
+            <div class="lp-hero-art">
+                <img src="AVATAR SALUDABLE.png" alt="Avatar NutriScan" onerror="this.src='Logotipo.png'">
+            </div>
+        </div>
+    </section>
+
+    <!-- COMMUNITY / ROLES -->
+    <section class="lp-community" id="roles">
+        <div class="lp-wrap">
+            <div class="lp-panel">
+                <div class="lp-sec-head">
+                    <div class="lp-leaf">
+                        <svg viewBox="0 0 24 24" fill="currentColor" width="34" height="34"><path d="M5 19c0-7 5-12 14-13 0 9-5 14-12 14-1 0-2 0-2-1z"/><path d="M5 19s2-5 7-8" stroke="#0f7a36" stroke-width="1.4" fill="none" stroke-linecap="round"/></svg>
+                    </div>
+                    <h2>Conectamos a toda la comunidad educativa</h2>
+                    <p>Cada rol tiene herramientas diseñadas para proteger y mejorar la salud de nuestros estudiantes.</p>
+                </div>
+
+                <div class="lp-roles" id="beneficios">
+                    <div class="lp-role estudiante">
+                        <div class="r-icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 7V5a3 3 0 0 1 6 0M6 7h12a1 1 0 0 1 1 1v11a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V8a1 1 0 0 1 1-1z"/><path d="M9 7V5a3 3 0 0 1 6 0v2"/></svg></div>
+                        <h3>Estudiante</h3>
+                        <p>Escanea, gana EightCoins, mira tu salud y participa en desafíos.</p>
+                        <button class="r-btn" onclick="openLoginModal(true)">Ir al panel</button>
+                        <img src="AVATAR FELIZ.png" class="r-char" alt="" onerror="this.style.display='none'">
+                    </div>
+                    <div class="lp-role padres">
+                        <div class="r-icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="8" cy="8" r="3"/><circle cx="16.5" cy="9" r="2.5"/><path d="M2.5 20a5.5 5.5 0 0 1 11 0"/><path d="M14 20a4.5 4.5 0 0 1 7.5-3.3"/></svg></div>
+                        <h3>Padres</h3>
+                        <p>Monitorea la salud de tus hijos en tiempo real y recibe alertas.</p>
+                        <button class="r-btn" onclick="openLoginModal(true)">Ir al panel</button>
+                        <img src="Avatar_fem_feliz.png" class="r-char" alt="" onerror="this.style.display='none'">
+                    </div>
+                    <div class="lp-role bar">
+                        <div class="r-icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 3v7a2 2 0 0 0 2 2 2 2 0 0 0 2-2V3M7 3v6M16 3c-1.5 0-2.5 2-2.5 5 0 2 1 3 2.5 3v10M5 12v9"/></svg></div>
+                        <h3>Bar Escolar</h3>
+                        <p>Gestiona ventas, menús y alertas en segundos.</p>
+                        <button class="r-btn" onclick="openLoginModal(true)">Ir al panel</button>
+                        <img src="AVATAR MOTIVADO.png" class="r-char" alt="" onerror="this.style.display='none'">
+                    </div>
+                    <div class="lp-role nutri">
+                        <div class="r-icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 8c0-3 2-5 5-5 0 4-2 6-5 6z"/><path d="M12 8c0 6-2 13-2 13M12 8c0-2.5-1.5-4.5-4-5.5C6 5 7 8 9.5 9.2"/></svg></div>
+                        <h3>Nutricionista</h3>
+                        <p>Analiza datos, detecta riesgos y recomienda mejores hábitos.</p>
+                        <button class="r-btn" onclick="openLoginModal(true)">Ir al panel</button>
+                        <img src="Avatar_fem_saludable.png" class="r-char" alt="" onerror="this.style.display='none'">
+                    </div>
+                </div>
+
+                <div class="lp-feat-bar" id="como-funciona">
+                    <div class="lp-feat">
+                        <div class="f-icon"><svg width="34" height="34" viewBox="0 0 24 24" fill="none"><rect x="5" y="10" width="14" height="10" rx="2.5" fill="#16215C"/><path d="M8 10V7a4 4 0 0 1 8 0v3" stroke="#16215C" stroke-width="2.2" fill="none"/><circle cx="12" cy="15" r="1.6" fill="#fff"/></svg></div>
+                        <div><h4>Seguridad garantizada</h4><p>Tus datos y alergias protegidos con tecnología Blockchain.</p></div>
+                    </div>
+                    <div class="lp-feat">
+                        <div class="f-icon"><svg width="34" height="34" viewBox="0 0 24 24" fill="none" stroke="#7C3AED" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12h4l2-5 3 9 2-4h7"/></svg></div>
+                        <div><h4>Prevención inteligente</h4><p>Detectamos riesgos antes de que se conviertan en problemas.</p></div>
+                    </div>
+                    <div class="lp-feat">
+                        <div class="f-icon"><svg width="34" height="34" viewBox="0 0 24 24" fill="#F5A623"><path d="M12 2.5l2.9 5.9 6.6.95-4.8 4.65 1.13 6.55L12 17.9 6.18 20.5l1.13-6.55-4.8-4.65 6.6-.95z"/></svg></div>
+                        <div><h4>Hábitos que suman</h4><p>Recompensamos las buenas elecciones con EightCoins y beneficios.</p></div>
+                    </div>
+                    <div class="lp-feat">
+                        <div class="f-icon" style="position:relative"><svg width="34" height="34" viewBox="0 0 24 24" fill="#16A34A"><path d="M5 19c0-7 5-12 14-13 0 9-5 14-12 14-1 0-2 0-2-1z"/></svg><svg width="34" height="34" viewBox="0 0 24 24" style="position:absolute;top:0;left:0" fill="none"><path d="M6 19s2-5 7-8" stroke="#0c6b2e" stroke-width="1.3" stroke-linecap="round"/></svg></div>
+                        <div><h4>Impacto real</h4><p>Formamos estudiantes más sanos, felices y con más energía.</p></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER LANDING -->
+    <footer style="background:#16215C;padding:28px 32px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:12px;" id="equipo">
+        <div style="display:flex;align-items:center;gap:10px;">
+            <img src="Logotipo.png" style="height:32px;width:auto;" onerror="this.style.display='none'">
+            <span style="font-family:'Poppins',sans-serif;font-weight:700;font-size:14px;color:#fff;">NutriScan <span style="color:#4ade80">·</span> Eight Academy 2025</span>
+        </div>
+        <div style="font-family:'Poppins',sans-serif;font-size:12px;color:#94a3b8;">Grupo 5 · David · Carlos · Amelia · Valentina 🌱</div>
+    </footer>
+</div>
+
+<!-- =================== LOGIN MODAL =================== -->
+<div id="login-modal" class="lm-overlay hidden">
+    <div class="lm-card">
+        <div style="text-align:center;margin-bottom:24px;">
+            <img src="Logotipo.png" style="width:52px;height:52px;object-fit:contain;margin:0 auto 10px;" onerror="this.style.display='none'">
+            <h2 id="auth-title" style="font-family:'Poppins',sans-serif;font-size:22px;font-weight:800;color:#16215C;">Bienvenido a NutriScan</h2>
+            <p id="auth-subtitle" style="font-family:'Poppins',sans-serif;font-size:12.5px;color:#5B6478;margin-top:4px;">La plataforma de alimentación escolar inteligente</p>
+        </div>
+        <div style="display:flex;flex-direction:column;gap:14px;">
             <div id="field-name" class="hidden">
-                <label class="block text-[11px] font-bold uppercase tracking-wider text-slate-400 mb-1.5">Nombre completo</label>
-                <input type="text" id="auth-name" placeholder="Ej. María González" class="input-field">
+                <label style="display:block;font-family:'Poppins',sans-serif;font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.06em;color:#5B6478;margin-bottom:6px;">Nombre completo</label>
+                <input type="text" id="auth-name" placeholder="Ej. María González" class="lm-input">
             </div>
             <div id="field-role" class="hidden">
-                <label class="block text-[11px] font-bold uppercase tracking-wider text-slate-400 mb-1.5">Rol</label>
-                <select id="auth-role" class="input-field">
+                <label style="display:block;font-family:'Poppins',sans-serif;font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.06em;color:#5B6478;margin-bottom:6px;">Rol</label>
+                <select id="auth-role" class="lm-input">
                     <option value="estudiante">Estudiante</option>
                     <option value="nutricionista">Nutricionista / DECE</option>
                     <option value="padre">Padre / Representante</option>
                 </select>
             </div>
             <div>
-                <label class="block text-[11px] font-bold uppercase tracking-wider text-slate-400 mb-1.5">Correo institucional</label>
-                <input type="email" id="auth-email" placeholder="usuario@eightacademy.edu.ec" class="input-field">
+                <label style="display:block;font-family:'Poppins',sans-serif;font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.06em;color:#5B6478;margin-bottom:6px;">Correo institucional</label>
+                <input type="email" id="auth-email" placeholder="usuario@eightacademy.edu.ec" class="lm-input">
             </div>
             <div>
-                <label class="block text-[11px] font-bold uppercase tracking-wider text-slate-400 mb-1.5">Contraseña</label>
-                <input type="password" id="auth-password" placeholder="••••••••" class="input-field">
+                <label style="display:block;font-family:'Poppins',sans-serif;font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.06em;color:#5B6478;margin-bottom:6px;">Contraseña</label>
+                <input type="password" id="auth-password" placeholder="••••••••" class="lm-input">
             </div>
-            <button id="btn-auth-submit" class="btn-green w-full py-3.5 text-sm font-extrabold uppercase tracking-wide mt-1">Ingresar a NutriScan</button>
+            <button id="btn-auth-submit" class="lm-btn" style="margin-top:4px;">Ingresar a NutriScan</button>
         </div>
-        <div class="text-center mt-5 text-xs text-slate-400">
+        <div style="text-align:center;margin-top:16px;font-family:'Poppins',sans-serif;font-size:12px;color:#5B6478;">
             <span id="auth-toggle-text">¿Primera vez aquí?</span>
-            <button id="btn-auth-toggle" class="text-green-400 font-bold ml-1 hover:underline">Crear cuenta</button>
+            <button id="btn-auth-toggle" style="color:#16A34A;font-weight:700;background:none;border:none;cursor:pointer;font-family:'Poppins',sans-serif;margin-left:4px;">Crear cuenta</button>
         </div>
+        <button onclick="document.getElementById('login-modal').classList.add('hidden')" style="position:absolute;top:14px;right:14px;background:none;border:none;cursor:pointer;color:#9aa3b8;font-size:20px;line-height:1;">✕</button>
     </div>
 </div>
 
@@ -785,9 +1025,23 @@
     };
 
     // ========================= AUTH =========================
+    function openLoginModal(signup) {
+        isSignUp = signup;
+        document.getElementById('login-modal').classList.remove('hidden');
+        document.getElementById('auth-title').textContent = signup ? 'Crear cuenta' : 'Bienvenido a NutriScan';
+        document.getElementById('auth-subtitle').textContent = signup ? 'Únete a NutriScan' : 'La plataforma de alimentación escolar inteligente';
+        document.getElementById('btn-auth-submit').textContent = signup ? 'Crear cuenta' : 'Ingresar a NutriScan';
+        document.getElementById('field-name').classList.toggle('hidden', !signup);
+        document.getElementById('field-role').classList.toggle('hidden', !signup);
+        document.getElementById('auth-toggle-text').textContent = signup ? '¿Ya tienes cuenta?' : '¿Primera vez aquí?';
+        document.getElementById('btn-auth-toggle').textContent = signup ? 'Inicia sesión' : 'Crear cuenta';
+    }
+    window.openLoginModal = openLoginModal;
+
     function initApp(name, role) {
         userData = { name, role };
-        document.getElementById('auth-overlay').classList.add('hidden');
+        document.getElementById('landing-page').classList.add('hidden');
+        document.getElementById('login-modal').classList.add('hidden');
         document.getElementById('app-wrapper').classList.remove('hidden');
         document.getElementById('user-display-name').textContent = `¡Hola, ${name.split(' ')[0]}!`;
         updateCoinsUI();
@@ -806,27 +1060,20 @@
             initApp(name, role);
             showToast('¡Cuenta creada! Bienvenido a NutriScan. 🌱');
         } else {
-            // Demo: any credentials work
             initApp(email.split('@')[0], 'estudiante');
             showToast('¡Sesión iniciada! Bienvenido. 🥗');
         }
     });
 
     document.getElementById('btn-auth-toggle').addEventListener('click', () => {
-        isSignUp = !isSignUp;
-        document.getElementById('auth-title').textContent = isSignUp ? 'Crear cuenta' : 'Bienvenido a NutriScan';
-        document.getElementById('auth-subtitle').textContent = isSignUp ? 'Únete a NutriScan' : 'La plataforma de alimentación escolar inteligente';
-        document.getElementById('btn-auth-submit').textContent = isSignUp ? 'Crear cuenta' : 'Ingresar a NutriScan';
-        document.getElementById('field-name').classList.toggle('hidden', !isSignUp);
-        document.getElementById('field-role').classList.toggle('hidden', !isSignUp);
-        document.getElementById('auth-toggle-text').textContent = isSignUp ? '¿Ya tienes cuenta?' : '¿Primera vez aquí?';
-        document.getElementById('btn-auth-toggle').textContent = isSignUp ? 'Inicia sesión' : 'Crear cuenta';
+        openLoginModal(!isSignUp);
     });
 
     document.getElementById('btn-logout').addEventListener('click', () => {
         userData = null;
-        document.getElementById('auth-overlay').classList.remove('hidden');
         document.getElementById('app-wrapper').classList.add('hidden');
+        document.getElementById('landing-page').classList.remove('hidden');
+        window.scrollTo(0, 0);
         showToast('Sesión cerrada. ¡Hasta pronto! 👋');
     });
 
