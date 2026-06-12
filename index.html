@@ -1115,6 +1115,7 @@
             <div class="sidebar-link" data-page="historial"><i data-lucide="history"></i> Historial</div>
             <div class="sidebar-link" data-page="wallet"><i data-lucide="wallet"></i> NutriWallet</div>
             <div class="sidebar-link" data-page="alertas"><i data-lucide="bell"></i> Alertas</div>
+            <div class="sidebar-link" data-page="bar"><i data-lucide="utensils"></i> Bar / Catering</div>
             <div class="sidebar-link" data-page="panel"><i data-lucide="shield"></i> Panel Nutricionista</div>
             <div class="sidebar-link" data-page="equipo"><i data-lucide="users"></i> Equipo</div>
         </div>
@@ -1601,6 +1602,140 @@
             </div>
         </section>
 
+        <!-- ====== BAR / CATERING ====== -->
+        <section class="section" id="page-bar">
+            <div class="flex items-center justify-between mb-7 flex-wrap gap-4">
+                <div class="flex items-center gap-3">
+                    <div class="w-11 h-11 rounded-xl bg-blue-500/10 border border-blue-500/20 flex items-center justify-center text-blue-400"><i data-lucide="utensils" class="w-5 h-5"></i></div>
+                    <div>
+                        <h1 class="text-2xl font-black text-white">Bar / Catering Escolar</h1>
+                        <p class="text-xs text-slate-400">Gestión de menú, pedidos y alertas de alergias · Eight Academy</p>
+                    </div>
+                </div>
+                <div class="flex items-center gap-2">
+                    <span id="bar-date" class="text-xs text-slate-500 font-mono"></span>
+                    <button onclick="barAddItem()" class="btn-green px-4 py-2.5 text-xs font-extrabold uppercase flex items-center gap-2"><i data-lucide="plus" class="w-4 h-4"></i> Agregar plato</button>
+                </div>
+            </div>
+
+            <!-- KPIs -->
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mb-6">
+                <div class="stat-card text-center">
+                    <div class="text-2xl font-black text-blue-400 mb-0.5" id="bar-pedidos">0</div>
+                    <div class="text-[11px] text-slate-400 uppercase font-bold tracking-wide">Pedidos hoy</div>
+                    <div class="text-[10px] text-blue-400/70 mt-1">Registros QR activos</div>
+                </div>
+                <div class="stat-card text-center">
+                    <div class="text-2xl font-black text-green-400 mb-0.5" id="bar-menu-count">4</div>
+                    <div class="text-[11px] text-slate-400 uppercase font-bold tracking-wide">Platos activos</div>
+                    <div class="text-[10px] text-green-400/70 mt-1">En menú del día</div>
+                </div>
+                <div class="stat-card text-center">
+                    <div class="text-2xl font-black text-red-400 mb-0.5" id="bar-alergias">3</div>
+                    <div class="text-[11px] text-slate-400 uppercase font-bold tracking-wide">Alertas alérgenos</div>
+                    <div class="text-[10px] text-red-400/70 mt-1">Requieren atención</div>
+                </div>
+                <div class="stat-card text-center">
+                    <div class="text-2xl font-black text-yellow-400 mb-0.5" id="bar-ingresos">0</div>
+                    <div class="text-[11px] text-slate-400 uppercase font-bold tracking-wide">EC generados</div>
+                    <div class="text-[10px] text-yellow-400/70 mt-1">EightCoins del día</div>
+                </div>
+            </div>
+
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-5 mb-5">
+
+                <!-- ─ MENÚ DEL DÍA ─ -->
+                <div class="glass p-5">
+                    <div class="flex items-center justify-between mb-4">
+                        <h3 class="text-xs font-bold uppercase tracking-wider text-slate-400 flex items-center gap-2">
+                            <i data-lucide="clipboard-list" class="w-4 h-4 text-blue-400"></i> Menú del día
+                        </h3>
+                        <span class="text-[10px] bg-blue-500/10 text-blue-400 border border-blue-500/20 px-2 py-0.5 rounded-full font-bold">ACTIVO</span>
+                    </div>
+                    <div id="bar-menu-list" class="space-y-2"></div>
+                </div>
+
+                <!-- ─ PEDIDOS RECIENTES ─ -->
+                <div class="glass p-5">
+                    <h3 class="text-xs font-bold uppercase tracking-wider text-slate-400 mb-4 flex items-center gap-2">
+                        <i data-lucide="receipt" class="w-4 h-4 text-green-400"></i> Pedidos recientes
+                    </h3>
+                    <div id="bar-orders-list" class="space-y-2">
+                        <p class="text-xs text-slate-500 italic">Los pedidos aparecen aquí cuando los estudiantes registran su lunch.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ─ ALERTAS DE ALÉRGENOS ─ -->
+            <div class="glass p-5 mb-5">
+                <h3 class="text-xs font-bold uppercase tracking-wider text-slate-400 mb-4 flex items-center gap-2">
+                    <i data-lucide="shield-alert" class="w-4 h-4 text-red-400"></i> Alertas de alérgenos activas
+                </h3>
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-3">
+                    <div class="rounded-xl border border-red-500/20 bg-red-500/5 p-4">
+                        <div class="flex items-center gap-2 mb-2">
+                            <span class="w-2 h-2 bg-red-400 rounded-full animate-pulse"></span>
+                            <span class="text-xs font-extrabold text-red-400 uppercase tracking-wide">Maní / Cacahuete</span>
+                        </div>
+                        <p class="text-[11px] text-slate-400">2 estudiantes con alergia registrada. Verificar ingredientes en: Ensalada César, Barra energética.</p>
+                        <div class="flex gap-2 mt-3">
+                            <button class="btn-outline text-[10px] px-3 py-1.5 font-bold">Ver estudiantes</button>
+                            <button class="text-[10px] px-3 py-1.5 rounded-lg bg-red-500/10 text-red-400 border border-red-500/20 font-bold hover:bg-red-500/20 transition">Marcar revisado</button>
+                        </div>
+                    </div>
+                    <div class="rounded-xl border border-orange-500/20 bg-orange-500/5 p-4">
+                        <div class="flex items-center gap-2 mb-2">
+                            <span class="w-2 h-2 bg-orange-400 rounded-full animate-pulse"></span>
+                            <span class="text-xs font-extrabold text-orange-400 uppercase tracking-wide">Gluten / Trigo</span>
+                        </div>
+                        <p class="text-[11px] text-slate-400">1 estudiante celíaco detectado. Revisar: Pan integral del menú estándar.</p>
+                        <div class="flex gap-2 mt-3">
+                            <button class="btn-outline text-[10px] px-3 py-1.5 font-bold">Ver estudiante</button>
+                            <button class="text-[10px] px-3 py-1.5 rounded-lg bg-orange-500/10 text-orange-400 border border-orange-500/20 font-bold hover:bg-orange-500/20 transition">Marcar revisado</button>
+                        </div>
+                    </div>
+                    <div class="rounded-xl border border-yellow-500/20 bg-yellow-500/5 p-4">
+                        <div class="flex items-center gap-2 mb-2">
+                            <span class="w-2 h-2 bg-yellow-400 rounded-full"></span>
+                            <span class="text-xs font-extrabold text-yellow-400 uppercase tracking-wide">Lactosa</span>
+                        </div>
+                        <p class="text-[11px] text-slate-400">Intolerancia detectada. Alternativa disponible: Bebida de avena en lugar de yogurt.</p>
+                        <div class="flex gap-2 mt-3">
+                            <button class="btn-outline text-[10px] px-3 py-1.5 font-bold">Ver detalle</button>
+                            <button class="text-[10px] px-3 py-1.5 rounded-lg bg-yellow-500/10 text-yellow-400 border border-yellow-500/20 font-bold hover:bg-yellow-500/20 transition">Marcar revisado</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ─ SERVICIOS DE CATERING ─ -->
+            <div class="glass p-5">
+                <h3 class="text-xs font-bold uppercase tracking-wider text-slate-400 mb-4 flex items-center gap-2">
+                    <i data-lucide="truck" class="w-4 h-4 text-purple-400"></i> Servicios de Catering
+                </h3>
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+                    <div class="rounded-xl bg-[#060f06] border border-white/5 p-4 hover:border-purple-500/20 transition cursor-pointer">
+                        <div class="w-10 h-10 rounded-xl bg-purple-500/10 border border-purple-500/20 flex items-center justify-center text-purple-400 mb-3"><i data-lucide="calendar" class="w-5 h-5"></i></div>
+                        <h4 class="text-sm font-bold text-white mb-1">Catering de eventos</h4>
+                        <p class="text-[11px] text-slate-400">Planifica servicio para eventos escolares, graduaciones y actividades especiales.</p>
+                        <div class="mt-3 text-[10px] text-purple-400 font-bold">→ Solicitar servicio</div>
+                    </div>
+                    <div class="rounded-xl bg-[#060f06] border border-white/5 p-4 hover:border-blue-500/20 transition cursor-pointer">
+                        <div class="w-10 h-10 rounded-xl bg-blue-500/10 border border-blue-500/20 flex items-center justify-center text-blue-400 mb-3"><i data-lucide="package" class="w-5 h-5"></i></div>
+                        <h4 class="text-sm font-bold text-white mb-1">Menú especial / Dietas</h4>
+                        <p class="text-[11px] text-slate-400">Opciones personalizadas para estudiantes con restricciones dietéticas o planes especiales.</p>
+                        <div class="mt-3 text-[10px] text-blue-400 font-bold">→ Configurar opciones</div>
+                    </div>
+                    <div class="rounded-xl bg-[#060f06] border border-white/5 p-4 hover:border-green-500/20 transition cursor-pointer">
+                        <div class="w-10 h-10 rounded-xl bg-green-500/10 border border-green-500/20 flex items-center justify-center text-green-400 mb-3"><i data-lucide="bar-chart-2" class="w-5 h-5"></i></div>
+                        <h4 class="text-sm font-bold text-white mb-1">Reporte de ventas</h4>
+                        <p class="text-[11px] text-slate-400">Visualiza el desempeño del bar, platos más pedidos e ingresos semanales y mensuales.</p>
+                        <div class="mt-3 text-[10px] text-green-400 font-bold">→ Ver reportes</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
         <!-- ====== EQUIPO ====== -->
         <section class="section" id="page-equipo">
             <div class="flex items-center gap-3 mb-7">
@@ -1831,6 +1966,11 @@
         renderHistoryList();
         renderWalletHistory();
         showToast(`¡Lunch registrado! +${menu.ec} EightCoins 🌽`);
+        // Notificar al panel de Bar
+        if (window.barRegisterOrder) {
+            const name = userData ? userData.name.split(' ')[0] : 'Estudiante';
+            barRegisterOrder(name, menu.label, menu.ec);
+        }
         selected.checked = false;
     });
 
@@ -1969,6 +2109,118 @@
     // Close modal on overlay click
     document.getElementById('modal-add-allergy').addEventListener('click', function(e) {
         if (e.target === this) this.classList.add('hidden');
+    });
+
+    // ========================= BAR / CATERING =========================
+    const BAR_MENU_DEFAULT = [
+        { id: 1, name: '🥗 Ensalada verde + Pollo a la plancha', cal: '340 kcal', ec: 15, cat: 'saludable', count: 0 },
+        { id: 2, name: '🍱 Almuerzo estándar (arroz + carne + sopa)', cal: '520 kcal', ec: 10, cat: 'estandar', count: 0 },
+        { id: 3, name: '🥤 Opción ligera (wrap + jugo natural)', cal: '260 kcal', ec: 8, cat: 'ligero', count: 0 },
+        { id: 4, name: '🍎 Fruta + yogurt (sin lactosa disponible)', cal: '180 kcal', ec: 12, cat: 'saludable', count: 0 },
+    ];
+    let barMenu = [...BAR_MENU_DEFAULT];
+    let barOrders = [];
+
+    function renderBarMenu() {
+        const el = document.getElementById('bar-menu-list');
+        if (!el) return;
+        el.innerHTML = barMenu.map(item => `
+            <div class="flex items-center justify-between p-3 rounded-xl bg-[#060f06] border border-white/5 gap-3">
+                <div class="flex-1 min-w-0">
+                    <div class="text-xs font-bold text-slate-200 truncate">${item.name}</div>
+                    <div class="text-[10px] text-slate-500 mt-0.5">${item.cal} · <span class="text-yellow-400 font-bold">+${item.ec} EC</span> · Pedidos: <span class="text-blue-400 font-bold">${item.count}</span></div>
+                </div>
+                <div class="flex items-center gap-2 shrink-0">
+                    <span class="text-[9px] px-2 py-0.5 rounded-full font-bold ${item.cat === 'saludable' ? 'bg-green-500/10 text-green-400 border border-green-500/20' : item.cat === 'estandar' ? 'bg-blue-500/10 text-blue-400 border border-blue-500/20' : 'bg-yellow-500/10 text-yellow-400 border border-yellow-500/20'}">${item.cat}</span>
+                    <button onclick="barRemoveItem(${item.id})" class="w-6 h-6 rounded-lg bg-red-500/10 text-red-400 hover:bg-red-500/20 transition text-xs flex items-center justify-center font-bold">✕</button>
+                </div>
+            </div>
+        `).join('');
+        const countEl = document.getElementById('bar-menu-count');
+        if (countEl) countEl.textContent = barMenu.length;
+    }
+
+    function renderBarOrders() {
+        const el = document.getElementById('bar-orders-list');
+        if (!el) return;
+        if (barOrders.length === 0) {
+            el.innerHTML = '<p class="text-xs text-slate-500 italic">Los pedidos aparecen aquí cuando los estudiantes registran su lunch.</p>';
+            return;
+        }
+        el.innerHTML = barOrders.slice(-8).reverse().map(o => `
+            <div class="flex items-center justify-between p-3 rounded-xl bg-[#060f06] border border-white/5 gap-3">
+                <div>
+                    <div class="text-xs font-bold text-slate-200">${o.student}</div>
+                    <div class="text-[10px] text-slate-500">${o.menu} · ${o.time}</div>
+                </div>
+                <div class="flex items-center gap-2 shrink-0">
+                    <span class="text-yellow-400 text-[10px] font-extrabold">+${o.ec} EC</span>
+                    <span class="text-[9px] px-2 py-0.5 rounded-full bg-green-500/10 text-green-400 border border-green-500/20 font-bold">✅ Completado</span>
+                </div>
+            </div>
+        `).join('');
+    }
+
+    function barRemoveItem(id) {
+        barMenu = barMenu.filter(i => i.id !== id);
+        renderBarMenu();
+        showToast('Plato eliminado del menú del día.');
+    }
+
+    function barAddItem() {
+        const name = prompt('Nombre del nuevo plato (incluye emoji):');
+        if (!name || !name.trim()) return;
+        const cal = prompt('Calorías aproximadas:', '300 kcal') || '300 kcal';
+        const ec = parseInt(prompt('EightCoins que otorga:', '10') || '10', 10);
+        const newId = Date.now();
+        barMenu.push({ id: newId, name: name.trim(), cal, ec, cat: 'estandar', count: 0 });
+        renderBarMenu();
+        showToast('¡Plato agregado al menú del día! 🍽️');
+    }
+    window.barAddItem = barAddItem;
+    window.barRemoveItem = barRemoveItem;
+
+    // Hook into lunch registration to update bar orders
+    const _origRegisterLunch = window._registerLunchHook;
+    function barRegisterOrder(studentName, menuName, ec) {
+        const now = new Date();
+        const time = now.toLocaleTimeString('es-ES', { hour: '2-digit', minute: '2-digit' });
+        barOrders.push({ student: studentName || 'Estudiante', menu: menuName, ec, time });
+        const item = barMenu.find(i => i.name.toLowerCase().includes(menuName.toLowerCase().split(' ')[1]?.toLowerCase() || ''));
+        if (item) item.count++;
+        const pedidosEl = document.getElementById('bar-pedidos');
+        if (pedidosEl) pedidosEl.textContent = barOrders.length;
+        const ingresosEl = document.getElementById('bar-ingresos');
+        if (ingresosEl) ingresosEl.textContent = barOrders.reduce((s, o) => s + o.ec, 0);
+        renderBarMenu();
+        renderBarOrders();
+    }
+    window.barRegisterOrder = barRegisterOrder;
+
+    // Set bar date
+    function initBarDate() {
+        const el = document.getElementById('bar-date');
+        if (el) {
+            const now = new Date();
+            el.textContent = now.toLocaleDateString('es-ES', { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' });
+        }
+    }
+
+    // Initialize bar panel when navigated to
+    const _origNavigate = navigate;
+    function navigateWithBar(page) {
+        _origNavigate(page);
+        if (page === 'bar') {
+            renderBarMenu();
+            renderBarOrders();
+            initBarDate();
+            lucide.createIcons();
+        }
+    }
+    document.querySelectorAll('.sidebar-link').forEach(l => {
+        l.removeEventListener('click', l._navHandler);
+        l._navHandler = () => navigateWithBar(l.dataset.page);
+        l.addEventListener('click', l._navHandler);
     });
 
     lucide.createIcons();
