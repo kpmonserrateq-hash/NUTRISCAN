@@ -150,7 +150,7 @@
         .lp-btn-white:hover { background: #f4f8ff; }
         .lp-btn-blue .ic { background: #fff; color: #2563EB; width: 26px; height: 26px; border-radius: 50%; display: flex; align-items: center; justify-content: center; }
         /* ── HERO COMPLETO ── */
-        .lp-hero { background: linear-gradient(135deg,#EAF3FB 0%,#EEF4FF 50%,#F4F7FF 100%); position: relative; overflow: hidden; }
+        .lp-hero { background: linear-gradient(135deg,#EAF3FB 0%,#EEF4FF 50%,#F4F7FF 100%); position: relative; overflow: clip; }
         .lp-hero-inner { display: grid; grid-template-columns: 45% 55%; align-items: center; max-width: 1380px; margin: 0 auto; padding: 40px 32px 48px; gap: 0; }
         .lp-hero h1 { font-size: 44px; line-height: 1.08; font-weight: 800; letter-spacing: -1.4px; }
         .lp-hero h1 .l1 { color: #2563EB; } .lp-hero h1 .l2 { color: #16A34A; }
@@ -410,6 +410,77 @@
         .lp-feat .f-icon { width: 40px; height: 40px; flex-shrink: 0; display: flex; align-items: center; justify-content: center; position: relative; }
         .lp-feat h4 { font-size: 14px; font-weight: 700; color: #2563EB; margin-bottom: 4px; }
         .lp-feat p { font-size: 12.5px; line-height: 1.45; color: #5a6278; }
+
+        /* ── SECCIÓN ¿CÓMO FUNCIONA? ── */
+        .lp-how { padding: 72px 0; background: #fff; }
+        .lp-how-inner { max-width: 1200px; margin: 0 auto; padding: 0 32px; }
+        .lp-section-label { display: inline-flex; align-items: center; gap: 7px; background: #EEF2FF; color: #2563EB; font-size: 11px; font-weight: 800; text-transform: uppercase; letter-spacing: .1em; padding: 5px 14px; border-radius: 99px; margin-bottom: 14px; }
+        .lp-section-title { font-size: 34px; font-weight: 800; color: #16215C; letter-spacing: -.6px; margin-bottom: 10px; line-height: 1.15; }
+        .lp-section-sub { font-size: 15.5px; color: #5B6478; line-height: 1.6; max-width: 520px; }
+        .lp-steps { display: grid; grid-template-columns: repeat(4,1fr); gap: 24px; margin-top: 52px; position: relative; }
+        .lp-steps::before { content: ""; position: absolute; top: 32px; left: 10%; right: 10%; height: 2px; background: linear-gradient(90deg,#2563EB,#7C3AED,#16A34A); opacity: .15; z-index: 0; }
+        .lp-step { background: #F8FAFF; border: 1px solid #eef1fa; border-radius: 20px; padding: 28px 24px; position: relative; z-index: 1; transition: all .25s; }
+        .lp-step:hover { transform: translateY(-4px); box-shadow: 0 16px 40px rgba(37,99,235,.10); border-color: #c7d4f8; }
+        .lp-step-num { width: 44px; height: 44px; border-radius: 50%; background: #2563EB; color: #fff; font-size: 18px; font-weight: 900; display: flex; align-items: center; justify-content: center; margin-bottom: 16px; box-shadow: 0 6px 18px rgba(37,99,235,.3); }
+        .lp-step h4 { font-size: 16px; font-weight: 800; color: #16215C; margin-bottom: 8px; }
+        .lp-step p  { font-size: 13px; color: #5B6478; line-height: 1.55; }
+        .lp-step-icon { font-size: 28px; margin-bottom: 10px; }
+
+        /* ── SECCIÓN ESTADÍSTICAS ── */
+        .lp-stats { background: linear-gradient(135deg,#16215C 0%,#1e3a8a 60%,#16215C 100%); padding: 60px 0; }
+        .lp-stats-inner { max-width: 1200px; margin: 0 auto; padding: 0 32px; display: grid; grid-template-columns: repeat(4,1fr); gap: 32px; }
+        .lp-stat { text-align: center; }
+        .lp-stat-num { font-size: 48px; font-weight: 900; color: #fff; line-height: 1; letter-spacing: -2px; }
+        .lp-stat-num span { font-size: 32px; }
+        .lp-stat-label { font-size: 13px; color: rgba(255,255,255,.6); margin-top: 8px; font-weight: 500; }
+        .lp-stat-accent { font-size: 11px; font-weight: 700; color: #4ade80; margin-top: 4px; }
+
+        /* ── SECCIÓN EQUIPO ── */
+        .lp-team { padding: 80px 0; background: #F7F8FA; }
+        .lp-team-inner { max-width: 1200px; margin: 0 auto; padding: 0 32px; }
+        .lp-team-grid { display: grid; grid-template-columns: repeat(4,1fr); gap: 24px; margin-top: 52px; }
+        .lp-team-card { background: #fff; border-radius: 22px; overflow: hidden; box-shadow: 0 4px 20px rgba(22,33,92,.07); transition: all .25s; border: 1px solid #f0f3fb; }
+        .lp-team-card:hover { transform: translateY(-6px); box-shadow: 0 20px 48px rgba(22,33,92,.12); }
+        .lp-team-cover { height: 120px; display: flex; align-items: center; justify-content: center; font-size: 52px; }
+        .lp-team-body { padding: 20px 22px 22px; }
+        .lp-team-name { font-size: 16px; font-weight: 800; color: #16215C; margin-bottom: 4px; }
+        .lp-team-role { font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: .08em; margin-bottom: 10px; }
+        .lp-team-desc { font-size: 12.5px; color: #5B6478; line-height: 1.55; }
+        .lp-team-tags { display: flex; flex-wrap: wrap; gap: 5px; margin-top: 12px; }
+        .lp-team-tag { font-size: 10px; font-weight: 700; padding: 3px 9px; border-radius: 99px; }
+
+        /* ── FOOTER COMPLETO ── */
+        .lp-footer { background: #16215C; color: #fff; }
+        .lp-footer-top { max-width: 1200px; margin: 0 auto; padding: 52px 32px 40px; display: grid; grid-template-columns: 1.8fr 1fr 1fr 1fr; gap: 40px; }
+        .lp-footer-brand p { font-size: 13px; color: rgba(255,255,255,.55); margin-top: 12px; line-height: 1.6; max-width: 280px; }
+        .lp-footer-col h5 { font-size: 11px; font-weight: 800; text-transform: uppercase; letter-spacing: .1em; color: rgba(255,255,255,.45); margin-bottom: 14px; }
+        .lp-footer-col a { display: block; font-size: 13.5px; color: rgba(255,255,255,.7); margin-bottom: 9px; cursor: pointer; transition: color .2s; }
+        .lp-footer-col a:hover { color: #4ade80; }
+        .lp-footer-bottom { border-top: 1px solid rgba(255,255,255,.08); }
+        .lp-footer-bottom-inner { max-width: 1200px; margin: 0 auto; padding: 18px 32px; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 10px; }
+        .lp-footer-bottom p { font-size: 12px; color: rgba(255,255,255,.4); }
+        .lp-footer-social { display: flex; gap: 10px; }
+        .lp-footer-social a { width: 32px; height: 32px; border-radius: 8px; background: rgba(255,255,255,.08); display: flex; align-items: center; justify-content: center; color: rgba(255,255,255,.6); transition: all .2s; cursor: pointer; }
+        .lp-footer-social a:hover { background: rgba(255,255,255,.15); color: #fff; }
+
+        /* ── HAMBURGER MÓVIL ── */
+        .lp-hamb { display: none; background: none; border: none; cursor: pointer; padding: 6px; border-radius: 8px; margin-left: auto; }
+        @media (max-width: 920px) { .lp-hamb { display: flex; } }
+
+        /* Responsive nuevas secciones */
+        @media (max-width: 920px) {
+            .lp-steps, .lp-team-grid { grid-template-columns: repeat(2,1fr); }
+            .lp-stats-inner { grid-template-columns: repeat(2,1fr); gap: 24px; }
+            .lp-footer-top { grid-template-columns: 1fr 1fr; gap: 28px; }
+        }
+        @media (max-width: 560px) {
+            .lp-steps, .lp-team-grid { grid-template-columns: 1fr; }
+            .lp-stats-inner { grid-template-columns: repeat(2,1fr); }
+            .lp-how-inner, .lp-team-inner { padding: 0 18px; }
+            .lp-footer-top { grid-template-columns: 1fr; gap: 22px; padding: 36px 18px 28px; }
+            .lp-steps::before { display: none; }
+        }
+
         /* Login modal */
         .lm-overlay { position: fixed; inset: 0; z-index: 9999; display: flex; align-items: center; justify-content: center; background: rgba(22,33,92,.5); backdrop-filter: blur(6px); padding: 16px; }
         .lm-card { background: #fff; border-radius: 20px; width: 100%; max-width: 420px; padding: 36px; box-shadow: 0 24px 60px rgba(22,33,92,.2); }
@@ -806,13 +877,186 @@
         </div>
     </section>
 
-    <!-- FOOTER LANDING -->
-    <footer style="background:#16215C;padding:28px 32px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:12px;" id="equipo">
-        <div style="display:flex;align-items:center;gap:10px;">
-            <img src="lp-logo.png" style="height:32px;width:auto;" onerror="this.src='Logotipo.png'">
-            <span style="font-family:'Poppins',sans-serif;font-weight:700;font-size:14px;color:#fff;">NutriScan <span style="color:#4ade80">·</span> Eight Academy 2025</span>
+    <!-- ══════════ CÓMO FUNCIONA ══════════ -->
+    <section class="lp-how" id="como-funciona">
+        <div class="lp-how-inner">
+            <div class="lp-section-label">
+                <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M12 2v4M12 18v4M4.93 4.93l2.83 2.83M16.24 16.24l2.83 2.83M2 12h4M18 12h4"/></svg>
+                ¿Cómo funciona?
+            </div>
+            <h2 class="lp-section-title">Simple, inteligente y seguro.<br>En 4 pasos.</h2>
+            <p class="lp-section-sub">NutriScan integra tecnología de punta con la rutina diaria del bar escolar para cuidar a cada estudiante sin fricciones.</p>
+
+            <div class="lp-steps">
+                <div class="lp-step">
+                    <div class="lp-step-num">1</div>
+                    <div class="lp-step-icon">📋</div>
+                    <h4>Regístrate</h4>
+                    <p>Crea tu perfil en NutriScan. Ingresa tu información nutricional, alergias y preferencias. Recibirás tu QR personal.</p>
+                </div>
+                <div class="lp-step" style="--n:#7C3AED">
+                    <div class="lp-step-num" style="background:#7C3AED;box-shadow:0 6px 18px rgba(124,58,237,.3)">2</div>
+                    <div class="lp-step-icon">📱</div>
+                    <h4>Escanea tu lunch</h4>
+                    <p>Al llegar al bar, escanea tu QR en el sistema SAP. La IA registra tu menú, verifica ingredientes y detecta alergias al instante.</p>
+                </div>
+                <div class="lp-step">
+                    <div class="lp-step-num" style="background:#DC2626;box-shadow:0 6px 18px rgba(220,38,38,.3)">3</div>
+                    <div class="lp-step-icon">🔔</div>
+                    <h4>Alertas inteligentes</h4>
+                    <p>Si se detecta un riesgo (alérgeno, desequilibrio nutricional), se notifica automáticamente a tus representantes y al DECE.</p>
+                </div>
+                <div class="lp-step">
+                    <div class="lp-step-num" style="background:#16A34A;box-shadow:0 6px 18px rgba(22,163,74,.3)">4</div>
+                    <div class="lp-step-icon">🌽</div>
+                    <h4>Gana EightCoins</h4>
+                    <p>Cada comida saludable registrada suma monedas a tu NutriWallet. Canjéalas por beneficios exclusivos en Eight Academy.</p>
+                </div>
+            </div>
         </div>
-        <div style="font-family:'Poppins',sans-serif;font-size:12px;color:#94a3b8;">Grupo 5 · David · Carlos · Amelia · Valentina 🌱</div>
+    </section>
+
+    <!-- ══════════ ESTADÍSTICAS ══════════ -->
+    <section class="lp-stats">
+        <div class="lp-stats-inner">
+            <div class="lp-stat">
+                <div class="lp-stat-num">500<span>+</span></div>
+                <div class="lp-stat-label">Estudiantes monitoreados</div>
+                <div class="lp-stat-accent">↑ Eight Academy 2025</div>
+            </div>
+            <div class="lp-stat">
+                <div class="lp-stat-num">98<span>%</span></div>
+                <div class="lp-stat-label">Alertas detectadas a tiempo</div>
+                <div class="lp-stat-accent">↑ Precisión IA nutricional</div>
+            </div>
+            <div class="lp-stat">
+                <div class="lp-stat-num">12<span>K+</span></div>
+                <div class="lp-stat-label">EightCoins distribuidos</div>
+                <div class="lp-stat-accent">↑ Recompensas activas</div>
+            </div>
+            <div class="lp-stat">
+                <div class="lp-stat-num">4</div>
+                <div class="lp-stat-label">Roles conectados</div>
+                <div class="lp-stat-accent">↑ Estudiante · Padres · Bar · Nutri</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ══════════ EQUIPO ══════════ -->
+    <section class="lp-team" id="equipo">
+        <div class="lp-team-inner">
+            <div style="text-align:center">
+                <div class="lp-section-label" style="background:#E7F6EC;color:#16A34A;margin-bottom:14px;">
+                    <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+                    Nuestro equipo
+                </div>
+                <h2 class="lp-section-title">El equipo detrás de NutriScan</h2>
+                <p class="lp-section-sub" style="margin:0 auto">Cinco mentes creativas del Grupo 5 de Eight Academy unidas por un objetivo: mejorar la alimentación escolar con tecnología.</p>
+            </div>
+            <div class="lp-team-grid">
+                <div class="lp-team-card">
+                    <div class="lp-team-cover" style="background:linear-gradient(135deg,#EEF2FF,#E0E7FF)">👨‍💻</div>
+                    <div class="lp-team-body">
+                        <div class="lp-team-name">David</div>
+                        <div class="lp-team-role" style="color:#2563EB">Desarrollo · Backend</div>
+                        <div class="lp-team-desc">Arquitectura del sistema, integración blockchain y conexión con SAP. Motor técnico del proyecto.</div>
+                        <div class="lp-team-tags">
+                            <span class="lp-team-tag" style="background:#EEF2FF;color:#2563EB">Backend</span>
+                            <span class="lp-team-tag" style="background:#EEF2FF;color:#2563EB">SAP</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="lp-team-card">
+                    <div class="lp-team-cover" style="background:linear-gradient(135deg,#F0FDF4,#DCFCE7)">👨‍🎨</div>
+                    <div class="lp-team-body">
+                        <div class="lp-team-name">Carlos</div>
+                        <div class="lp-team-role" style="color:#16A34A">Diseño · UX/UI</div>
+                        <div class="lp-team-desc">Identidad visual, sistema de avatares nutricionales y experiencia de usuario. Hace que NutriScan sea hermoso.</div>
+                        <div class="lp-team-tags">
+                            <span class="lp-team-tag" style="background:#F0FDF4;color:#16A34A">UX/UI</span>
+                            <span class="lp-team-tag" style="background:#F0FDF4;color:#16A34A">Figma</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="lp-team-card">
+                    <div class="lp-team-cover" style="background:linear-gradient(135deg,#FDF4FF,#F5E8FF)">👩‍⚕️</div>
+                    <div class="lp-team-body">
+                        <div class="lp-team-name">Amelia</div>
+                        <div class="lp-team-role" style="color:#7C3AED">Nutrición · Salud</div>
+                        <div class="lp-team-desc">Modelo nutricional, criterios de alerta de alergias y validación de datos de salud escolar. La experta del equipo.</div>
+                        <div class="lp-team-tags">
+                            <span class="lp-team-tag" style="background:#FDF4FF;color:#7C3AED">Nutrición</span>
+                            <span class="lp-team-tag" style="background:#FDF4FF;color:#7C3AED">DECE</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="lp-team-card">
+                    <div class="lp-team-cover" style="background:linear-gradient(135deg,#FFFBEB,#FEF3C7)">👩‍🔬</div>
+                    <div class="lp-team-body">
+                        <div class="lp-team-name">Valentina</div>
+                        <div class="lp-team-role" style="color:#D97706">Investigación · ODS</div>
+                        <div class="lp-team-desc">Análisis de mercado, sustento técnico del proyecto y alineación con Objetivos de Desarrollo Sostenible.</div>
+                        <div class="lp-team-tags">
+                            <span class="lp-team-tag" style="background:#FFFBEB;color:#D97706">ODS</span>
+                            <span class="lp-team-tag" style="background:#FFFBEB;color:#D97706">Market</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ══════════ FOOTER ══════════ -->
+    <footer class="lp-footer">
+        <div class="lp-footer-top">
+            <div class="lp-footer-brand">
+                <div style="display:flex;align-items:center;gap:10px;margin-bottom:6px;">
+                    <img src="lp-logo.png" style="height:38px;width:auto;" onerror="this.src='Logotipo.png'">
+                    <div>
+                        <div style="font-weight:800;font-size:20px;line-height:1;"><span style="color:#fff">Nutri</span><span style="color:#4ade80">Scan</span></div>
+                        <div style="font-size:8px;font-weight:700;letter-spacing:1.5px;color:rgba(255,255,255,.4);margin-top:2px;">EIGHT ACADEMY · GRUPO 5</div>
+                    </div>
+                </div>
+                <p>Plataforma de nutrición escolar inteligente que conecta el bar, la familia y el equipo de salud para cuidar a cada estudiante.</p>
+            </div>
+            <div class="lp-footer-col">
+                <h5>Producto</h5>
+                <a onclick="document.getElementById('roles').scrollIntoView({behavior:'smooth'})">Funciones</a>
+                <a onclick="document.getElementById('como-funciona').scrollIntoView({behavior:'smooth'})">¿Cómo funciona?</a>
+                <a onclick="openLoginModal(true)">Registrarse</a>
+                <a onclick="openLoginModal(false)">Iniciar sesión</a>
+            </div>
+            <div class="lp-footer-col">
+                <h5>Roles</h5>
+                <a onclick="openLoginModal(true)">Estudiantes</a>
+                <a onclick="openLoginModal(true)">Padres y Representantes</a>
+                <a onclick="openLoginModal(true)">Bar Escolar</a>
+                <a onclick="openLoginModal(true)">Nutricionistas</a>
+            </div>
+            <div class="lp-footer-col">
+                <h5>Proyecto</h5>
+                <a onclick="document.getElementById('equipo').scrollIntoView({behavior:'smooth'})">Equipo</a>
+                <a>Eight Academy 2025</a>
+                <a>ODS · Hambre Cero</a>
+                <a>Blockchain & SAP</a>
+            </div>
+        </div>
+        <div class="lp-footer-bottom">
+            <div class="lp-footer-bottom-inner">
+                <p>© 2025 NutriScan — Eight Academy · Grupo 5. Con amor, David · Carlos · Amelia · Valentina 🌱</p>
+                <div class="lp-footer-social">
+                    <a title="GitHub">
+                        <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.58 2 12.24c0 4.52 2.87 8.35 6.84 9.7.5.09.68-.22.68-.49v-1.7c-2.78.62-3.37-1.37-3.37-1.37-.46-1.19-1.12-1.51-1.12-1.51-.91-.64.07-.63.07-.63 1.01.07 1.54 1.06 1.54 1.06.9 1.57 2.36 1.12 2.93.85.09-.66.35-1.12.64-1.38-2.22-.26-4.56-1.14-4.56-5.07 0-1.12.39-2.03 1.03-2.75-.1-.26-.45-1.3.1-2.71 0 0 .84-.28 2.75 1.05a9.4 9.4 0 0 1 2.5-.34c.85 0 1.7.11 2.5.34 1.9-1.33 2.75-1.05 2.75-1.05.55 1.41.2 2.45.1 2.71.64.72 1.03 1.63 1.03 2.75 0 3.94-2.34 4.81-4.57 5.06.36.32.68.94.68 1.9v2.82c0 .27.18.59.69.49A10.24 10.24 0 0 0 22 12.24C22 6.58 17.52 2 12 2z"/></svg>
+                    </a>
+                    <a title="Instagram">
+                        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg>
+                    </a>
+                    <a title="LinkedIn">
+                        <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6zM2 9h4v12H2z"/><circle cx="4" cy="4" r="2"/></svg>
+                    </a>
+                </div>
+            </div>
+        </div>
     </footer>
 </div>
 
