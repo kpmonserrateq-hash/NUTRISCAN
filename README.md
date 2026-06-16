@@ -67,7 +67,6 @@ Base de datos en la nube.
 Firebase.
 Dashboards interactivos.
 Diseño UI/UX.
-Código QR.
 Código SAP.
 Avatar Nutricional Interactivo.
 Tótem Inteligente.
