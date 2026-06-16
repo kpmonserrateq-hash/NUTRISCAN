@@ -1,5 +1,32 @@
 # NUTRISCAN
 Plataforma inteligente de alimentación escolar para monitoreo nutricional, pagos internos, alertas preventivas y gamificación saludable.
+
+## Cómo ejecutar el proyecto
+Este proyecto es un prototipo **100% frontend** (HTML + CSS + JavaScript), sin backend ni proceso de build. No requiere `npm install` ni servidor especial.
+
+1. Clona el repositorio:
+   ```bash
+   git clone https://github.com/kpmonserrateq-hash/NUTRISCAN.git
+   cd NUTRISCAN
+   ```
+2. Abre `index.html` directamente en el navegador, o sírvelo con un servidor estático simple:
+   ```bash
+   python3 -m http.server 8000
+   ```
+   y visita `http://localhost:8000`.
+
+## Estructura del proyecto
+- `index.html` — landing page principal y acceso a los dashboards (estudiante, padres, bar escolar, nutricionista).
+- `1B.html` … `7E.html` — pantallas/prototipos individuales por rol y flujo (B = Bar, E = Estudiante, G = Gestión/General, P = Padres).
+- `*.png` / `*.jpeg` — avatares, logos e ilustraciones usadas en las páginas.
+- `*.pdf` / `*.docx` — documentación del proyecto (investigación, whitepaper, cronograma, encuestas).
+
+## Stack técnico
+- HTML5 + CSS3 (estilos inline por página)
+- [Tailwind CSS](https://tailwindcss.com/) vía CDN
+- [Lucide Icons](https://lucide.dev/) vía CDN
+- JavaScript vanilla (sin frameworks ni backend conectado; los datos mostrados son simulados/mock)
+
 # Integrantes
 – Líder: David Núnez 
  – Secretario: Carlos Cruz
