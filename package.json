@@ -2,9 +2,10 @@
   "name": "nutriscan-backend",
   "version": "1.0.0",
   "description": "Backend API para NutriScan usando SQLite",
-  "main": "server.js",
+  "main": "server/index.js",
   "scripts": {
-    "start": "node server.js"
+    "start": "node server/index.js",
+    "seed": "node scripts/seed.js"
   },
   "dependencies": {
     "cors": "^2.8.5",

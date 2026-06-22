@@ -1,0 +1,47 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#16a34a">
+  <meta name="description" content="NutriScan: plataforma escolar para consumo, NutriWallet, EightCoins, ranking, perfil SAP y seguimiento nutricional.">
+  <title>NutriScan | SPA funcional</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <a class="skip-link" href="#app">Saltar al contenido</a>
+
+  <header class="site-header">
+    <a class="brand" href="#inicio" data-route="inicio" aria-label="NutriScan inicio">
+      <img src="lp-logo.png" alt="" width="46" height="46">
+      <span><strong>Nutri<span>Scan</span></strong><small>Identifica · Protege · Nutre</small></span>
+    </a>
+
+    <button class="menu-toggle" type="button" aria-label="Abrir menu" aria-expanded="false" aria-controls="mainNav">
+      <span></span><span></span><span></span>
+    </button>
+
+    <nav class="main-nav" id="mainNav" aria-label="Menu principal">
+      <a href="#inicio" data-route="inicio">Inicio</a>
+      <a href="#beneficios" data-route="beneficios">Beneficios</a>
+      <a href="#equipo" data-route="equipo">Equipo</a>
+      <a href="#contacto" data-route="contacto">Contacto</a>
+      <button type="button" class="button secondary auth-public-action" data-route="login">Iniciar sesion</button>
+      <button type="button" class="button primary auth-public-action" data-route="registro">Registrarse</button>
+    </nav>
+  </header>
+
+  <div id="redirectNotice" class="page-banner" hidden>
+    Has sido redirigido al panel principal de NutriScan. Ahora toda la experiencia está centralizada aquí.
+  </div>
+
+  <main id="app">
+    <!-- trimmed for brevity; file copied from root index.html -->
+  </main>
+
+  <script src="app.js"></script>
+</body>
+</html>

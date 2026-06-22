@@ -1,0 +1,41 @@
+name: Seed DB and Commit
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [ main, master ]
+
+permissions:
+  contents: write
+
+jobs:
+  seed-and-commit:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          persist-credentials: true
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: '18'
+
+      - name: Install
+        run: npm ci
+
+      - name: Run seed
+        run: npm run seed
+
+      - name: Commit DB file
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add data/nutriscan.db || true
+          if git diff --staged --quiet; then
+            echo "No DB changes to commit"
+          else
+            git commit -m "chore: seed database (automated)" || true
+            git push origin HEAD:${{ github.ref_name }} || true
+          fi
