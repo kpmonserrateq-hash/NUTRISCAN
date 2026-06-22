@@ -1,5 +1,4 @@
-# NutriScan (repositorio preparado para trabajo local y en GitHub)
-
+REPLACE
 Proyecto backend + SPA ligero usando SQLite embebida. El repositorio está organizado para poder trabajar **localmente** o desde GitHub (Codespaces / Actions).
 
 Rápido — ejecutar en local:
@@ -30,7 +29,7 @@ Desarrollo en GitHub Codespaces / DevContainer:
 Notas:
 - Si quieres desplegar el backend en producción, recomiento un servicio que soporte Node y archivos persistentes (DigitalOcean App Platform, Render, o un droplet). GitHub Pages sólo sirve la parte estática.
 
-Si quieres, configuro el deploy automático a un servicio (Render/Heroku/Vercel) o preparo un `Procfile`/`Dockerfile`. 
+Si quieres, configuro el deploy automático a un servicio (Render/Heroku/Vercel) o preparo un `Procfile`/`Dockerfile`.
 # NutriScan
 
 Proyecto SPA + backend Express para roles de estudiante/padre/bar/nutricion, wallet, recargas, historial, escaneo y seguimiento de habitos.
