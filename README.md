@@ -1,3 +1,36 @@
+# NutriScan (repositorio preparado para trabajo local y en GitHub)
+
+Proyecto backend + SPA ligero usando SQLite embebida. El repositorio está organizado para poder trabajar **localmente** o desde GitHub (Codespaces / Actions).
+
+Rápido — ejecutar en local:
+
+```bash
+git clone <tu-repo-url>
+cd "Nutriscan 2"
+npm ci
+npm run seed    # crea/actualiza data/nutriscan.db
+npm start       # arranca API en http://localhost:3000
+```
+
+Abrir en el navegador: http://localhost:3000
+
+Archivos importantes:
+- `server/index.js` — servidor Express + API
+- `server/db.js` — migraciones y conexión SQLite
+- `public/` — SPA y assets estáticos servidos por Express
+- `data/nutriscan.db` — base de datos SQLite (seed incluida)
+
+Automatización en GitHub:
+- `.github/workflows/seed-and-commit.yml` — workflow que ejecuta `npm run seed` y commit/pu.sh de `data/nutriscan.db` cuando corresponde.
+
+Desarrollo en GitHub Codespaces / DevContainer:
+1. Abre el repositorio en Codespaces o usa `Remote - Containers` en VS Code.
+2. El contenedor (si se crea) ejecuta `npm ci` y `npm run seed` en `postCreateCommand`.
+
+Notas:
+- Si quieres desplegar el backend en producción, recomiento un servicio que soporte Node y archivos persistentes (DigitalOcean App Platform, Render, o un droplet). GitHub Pages sólo sirve la parte estática.
+
+Si quieres, configuro el deploy automático a un servicio (Render/Heroku/Vercel) o preparo un `Procfile`/`Dockerfile`. 
 # NutriScan
 
 Proyecto SPA + backend Express para roles de estudiante/padre/bar/nutricion, wallet, recargas, historial, escaneo y seguimiento de habitos.
