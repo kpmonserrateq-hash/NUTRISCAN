@@ -39,9 +39,706 @@
   </div>
 
   <main id="app">
-    <!-- trimmed for brevity; file copied from root index.html -->
+    <section class="view hero-view is-active" data-view="inicio">
+      <div>
+        <p class="eyebrow">Plataforma escolar inteligente</p>
+        <h1>Nutricion inteligente para un futuro saludable.</h1>
+        <p class="lead">NutriScan conecta consumo, pagos internos, alertas, gamificacion y perfil SAP en una experiencia escolar visual, segura y facil de usar para estudiantes, familias y personal del bar.</p>
+        <div class="actions">
+          <button type="button" class="button primary auth-public-action" id="heroLoginButton" data-route="login">Iniciar sesion</button>
+          <button type="button" class="button secondary auth-public-action" id="heroRegisterButton" data-route="registro">Crear cuenta</button>
+          <button type="button" class="button secondary" data-route="beneficios">Ver beneficios</button>
+        </div>
+      </div>
+      <aside class="hero-card dashboard-preview" aria-label="Imagen de portada NutriScan">
+        <img class="index-hero-image" src="images/Imagen_index.jpeg" alt="Vista principal NutriScan">
+      </aside>
+    </section>
+
+    <section class="view" data-view="beneficios">
+      <div class="section-head">
+        <p class="eyebrow">Beneficios</p>
+        <h2>Flujo escolar completo</h2>
+      </div>
+      <div class="cards three">
+        <article class="card benefit-card">
+          <div class="benefit-icon">🍱</div>
+          <div class="benefit-content">
+            <h3>Consumo claro</h3>
+            <p>Registra y visualiza cada compra y cada lunch de forma sencilla. Nuestro historial permite buscar por fecha, estudiante o alimento y activar alertas cuando hay restricciones o alergias.</p>
+            <ul class="benefit-list">
+              <li>Historial por estudiante y por periodo.</li>
+              <li>Alertas automáticas por alergias o restricciones.</li>
+              <li>Ficha nutricional resumida por comida.</li>
+            </ul>
+          </div>
+        </article>
+
+        <article class="card benefit-card">
+          <div class="benefit-icon">💳</div>
+          <div class="benefit-content">
+            <h3>Pagos seguros</h3>
+            <p>NutriWallet centraliza recargas y pagos del bar, con registro de movimientos y control de saldo. Los padres y el personal autorizado pueden revisar transacciones y generar reportes simples.</p>
+            <ul class="benefit-list">
+              <li>Recargas y gastos con historial detallado.</li>
+              <li>Control de saldo por estudiante y alertas de bajo saldo.</li>
+              <li>Reportes exportables para gestión del bar.</li>
+            </ul>
+          </div>
+        </article>
+
+        <article class="card benefit-card">
+          <div class="benefit-icon">🌟</div>
+          <div class="benefit-content">
+            <h3>Hábitos saludables</h3>
+            <p>Incentivamos buenas decisiones con EightCoins, ranking y recompensas. El sistema muestra rachas, objetivos y recomensa a estudiantes por elecciones equilibradas y consumo de opciones saludables.</p>
+            <ul class="benefit-list">
+              <li>Sistema de puntos y recompensas por hábitos saludables.</li>
+              <li>Ranking y retos por curso o grupo.</li>
+              <li>Recompensas canjeables y seguimiento de progreso.</li>
+            </ul>
+          </div>
+        </article>
+      </div>
+      <button type="button" class="button primary" data-route="login">Probar ahora</button>
+    </section>
+
+    <section class="view" data-view="equipo">
+      <div class="section-head">
+        <p class="eyebrow">Equipo</p>
+        <h2>Roles conectados</h2>
+      </div>
+      <div class="cards four">
+        <article class="card team-card">
+          <div class="team-icon">🎓</div>
+          <div class="team-content">
+            <h3>Estudiantes</h3>
+            <p>Herramientas pensadas para que cada estudiante entienda su consumo y mejore sus hábitos: historial de comidas, análisis de lunch y seguimiento de puntos.</p>
+            <ul class="team-list">
+              <li>Historial completo por fecha y alimento.</li>
+              <li>Rachas y recompensas para motivar hábitos.</li>
+            </ul>
+          </div>
+        </article>
+
+        <article class="card team-card">
+          <div class="team-icon">👪</div>
+          <div class="team-content">
+            <h3>Padres</h3>
+            <p>Visibilidad y control para las familias: revisa saldo, movimientos, alertas nutricionales del estudiante y el calendario de eventos o citas.</p>
+            <ul class="team-list">
+              <li>Notificaciones y alertas por alergias.</li>
+              <li>Acceso al historial de recargas y gastos.</li>
+            </ul>
+          </div>
+        </article>
+
+        <article class="card team-card">
+          <div class="team-icon">🏪</div>
+          <div class="team-content">
+            <h3>Bar escolar</h3>
+            <p>Funciones operativas para el personal del bar: gestión rápida de ventas, control de stock básico, reportes diarios y herramientas de cobro con NutriWallet.</p>
+            <ul class="team-list">
+              <li>Registro de ventas y conciliación diaria.</li>
+              <li>Reportes de productos más vendidos y control de stock.</li>
+            </ul>
+          </div>
+        </article>
+
+        <article class="card team-card">
+          <div class="team-icon">🥗</div>
+          <div class="team-content">
+            <h3>Nutrición</h3>
+            <p>Herramientas analíticas para nutricionistas: indicadores de consumo agregados, recomendaciones de menú y seguimiento de casos con alertas alimentarias.</p>
+            <ul class="team-list">
+              <li>Análisis por curso y por periodo.</li>
+              <li>Recomendaciones y seguimiento individualizado.</li>
+            </ul>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <section class="view" data-view="contacto">
+      <div class="section-head">
+        <p class="eyebrow">Contacto</p>
+        <h2>Solicita una demostracion</h2>
+      </div>
+      <form class="panel form-grid" id="contactForm" novalidate>
+        <label>Nombre<input name="nombre" autocomplete="name" required></label>
+        <label>Rol
+          <select name="rol" required>
+            <option value="">Selecciona una opcion</option>
+            <option>Familia</option><option>Estudiante</option><option>Bar escolar</option><option>Nutricionista</option>
+          </select>
+        </label>
+        <label class="span-2">Mensaje<textarea name="mensaje" rows="4" required></textarea></label>
+        <div class="contact-actions">
+          <button class="button primary" type="submit">Enviar correo</button>
+          <button class="button secondary" type="button" id="contactWhatsapp">Enviar por WhatsApp</button>
+        </div>
+        <p class="form-status" id="contactStatus" role="status" aria-live="polite"></p>
+      </form>
+    </section>
+
+    <section class="view auth-view" data-view="login">
+      <form class="auth-card" id="loginForm">
+        <p class="eyebrow">Acceso demo</p>
+        <h2>Iniciar sesion</h2>
+        <label>Codigo SAP<input name="sap" value="1234" inputmode="numeric" required></label>
+        <label>Rol
+          <select name="role" required>
+            <option value="student">Estudiante</option>
+            <option value="parent">Padres</option>
+            <option value="bar">Bar escolar</option>
+            <option value="nutrition">Nutricionista</option>
+            <option value="admin">Administrador</option>
+          </select>
+        </label>
+        <p id="loginNote" class="form-help" aria-live="polite"></p>
+        <p id="loginUserName" class="form-help"></p>
+        <button class="button primary" type="submit">Entrar</button>
+        <button class="button secondary" type="button" data-route="registro">Crear cuenta</button>
+        <p class="form-status" id="loginStatus" role="status" aria-live="polite"></p>
+      </form>
+    </section>
+
+    <section class="view auth-view" data-view="registro">
+      <form class="auth-card" id="registerForm">
+        <p class="eyebrow">Registro demo</p>
+        <h2>Crear cuenta</h2>
+        <label>Nombre<input name="name" required></label>
+        <label>Codigo SAP<input name="sap" inputmode="numeric" required></label>
+        <label>Rol
+          <select name="role" required>
+            <option value="">Selecciona un rol</option>
+            <option value="student">Estudiante</option>
+            <option value="parent">Padre / Madre</option>
+            <option value="bar">Bar escolar</option>
+            <option value="nutrition">Nutricionista</option>
+            <option value="admin">Administrador</option>
+          </select>
+        </label>
+        <label>Curso<input name="course" placeholder="Ej. 1 BGU A"></label>
+        <label>Alergias<input name="allergies" placeholder="Ej. Ninguna"></label>
+        <button class="button primary" type="submit">Registrar y entrar</button>
+        <button class="button secondary" type="button" data-route="login">Ya tengo cuenta</button>
+        <p class="form-status" id="registerStatus" role="status" aria-live="polite"></p>
+      </form>
+    </section>
+
+    <section class="view dashboard-view" data-view="dashboard">
+      <aside class="sidebar">
+        <div class="profile">
+          <img src="lp-logo.png" alt="" width="76" height="76">
+          <strong id="profileName">David Nunez</strong>
+          <span id="profileDetails">Codigo SAP: 1234 · 1 BGU A</span>
+          <small><i></i> En linea</small>
+        </div>
+        <nav aria-label="Dashboard">
+          <button type="button" data-panel="consumo">Mi Consumo</button>
+          <button type="button" data-panel="wallet">NutriWallet</button>
+          <button type="button" data-panel="products">Productos</button>
+          <button type="button" data-panel="snack">Comida Media Mañana</button>
+          <button type="button" data-panel="lunchMeal">Lunch</button>
+          <button type="button" data-panel="variousSales">Ventas Varias</button>
+          <button type="button" data-panel="coins">EightCoins</button>
+          <button type="button" data-panel="ranking">Ranking</button>
+          <button type="button" data-panel="sap">Perfil SAP</button>
+          <button type="button" data-panel="users">Usuarios</button>
+          <button type="button" data-panel="settings">Configuracion</button>
+          <button type="button" class="danger" data-action="logout">Cerrar sesion</button>
+        </nav>
+      </aside>
+
+      <div class="dashboard-main">
+        <div class="dash-top">
+          <div>
+            <p class="eyebrow">Dashboard</p>
+            <h2 id="panelTitle">Mi Consumo</h2>
+            <p class="dashboard-hint" id="dashboardRoleHint">Accede a la información clave para tu rol.</p>
+          </div>
+          <div class="toolbar">
+            <button type="button" class="button secondary" data-panel="camera">Escanear</button>
+            <button type="button" class="button secondary" data-panel="language">Cambiar idioma</button>
+          </div>
+        </div>
+
+        <section class="panel-view is-active" data-panel-view="consumo">
+          <div class="cards two-col" id="consumoWallets">
+            <article class="card wallet-card" data-consumo-wallet="lunch">
+              <strong>Lunch de hoy</strong>
+              <b>$0.00</b>
+              <p>Sin consumos registrados hoy.</p>
+              <div class="wallet-list"><span>Calorías: 0 kcal</span><span>Proteínas: 0 g</span></div>
+            </article>
+            <article class="card wallet-card blue" data-consumo-wallet="media_manana">
+              <strong>Comida de media mañana hoy</strong>
+              <b>$0.00</b>
+              <p>Sin consumos registrados hoy.</p>
+              <div class="wallet-list"><span>Calorías: 0 kcal</span><span>Proteínas: 0 g</span></div>
+            </article>
+          </div>
+          <div class="cards three dashboard-cards">
+            <article class="card metric-card"><span class="metric-icon green">📊</span><strong>Total calorias y proteinas del dia</strong><p>Suma diaria registrada por lunch y media mañana.</p><b>0 kcal · 0 g prot</b></article>
+            <article class="card metric-card"><span class="metric-icon blue">💧</span><strong>Agua registrada</strong><p>4 vasos de 8 recomendados.</p><b>50%</b></article>
+            <article class="card metric-card"><span class="metric-icon purple">😀</span><strong>Avatar emocional</strong><p>Tu alimentacion se ve equilibrada.</p><b>Feliz</b></article>
+          </div>
+          <div class="cards two-col">
+            <article class="panel scan-entry">
+              <div class="card-head"><span class="metric-icon green">📷</span><h3>Registrar lunch desde casa</h3></div>
+              <p class="lead-sm">Toma una foto del lunch, escanea un codigo SAP o registra manualmente el alimento para simular el analisis nutricional.</p>
+              <div class="steps">
+                <span><b>1</b> Abre la camara</span>
+                <span><b>2</b> Toma la foto</span>
+                <span><b>3</b> Guarda el analisis</span>
+              </div>
+            </article>
+            <article class="panel nutrition-summary">
+              <div class="card-head"><span class="metric-icon blue">📊</span><h3>Resumen nutricional de hoy</h3></div>
+              <div class="res-item"><span>Calorias consumidas</span><b>650 / 1.800 kcal</b><i style="width:36%"></i></div>
+              <div class="res-item"><span>Proteinas consumidas</span><b>32 / 90 g</b><i style="width:36%"></i></div>
+              <div class="res-item"><span>Alimentos saludables</span><b>4 / 5 porciones</b><i style="width:80%"></i></div>
+              <div class="res-item"><span>Agua registrada</span><b>4 / 8 vasos</b><i style="width:50%"></i></div>
+            </article>
+          </div>
+          <div class="actions">
+            <button class="button primary" type="button" data-panel="camera">Escanear lunch</button>
+            <button class="button secondary" type="button" id="saveNutritionSummaryButton">Guardar resumen de hoy</button>
+            <button class="button secondary" type="button" data-panel="history">Ver historial completo</button>
+          </div>
+          <p class="form-status" id="saveNutritionSummaryStatus" role="status" aria-live="polite"></p>
+        </section>
+
+        <section class="panel-view" data-panel-view="wallet">
+          <div class="cards two-col">
+            <article class="card wallet-card"><strong>Saldo disponible para compras</strong><b>$20.00</b><p>Disponible en Sumo y Resto.</p><div class="progress"><span style="width:64%"></span></div></article>
+            <article class="card wallet-card blue"><strong>Servicio de almuerzo</strong><b>Plan activo</b><p>Renovacion: 20 de mayo.</p><div class="wallet-list"><span>Recargas: $35.00</span><span>Gastos: $15.00</span><span>Estado: seguro</span></div></article>
+            <div id="parentRecharge" class="card wallet-recharge" hidden>
+              <h4>Recargar saldo del hijo</h4>
+              <label>Monto (USD)<input id="rechargeAmount" type="number" step="0.01" min="0" placeholder="Ej. 20.00"></label>
+              <div class="actions">
+                <button class="button primary" type="button" id="rechargeButton">Recargar saldo</button>
+              </div>
+              <p class="form-status" id="walletStatus" role="status"></p>
+            </div>
+          </div>
+        </section>
+
+        <section class="panel-view" data-panel-view="products">
+          <div class="panel">
+            <div class="panel-head">
+              <div>
+                <h3>Productos a la venta</h3>
+                <p class="lead-sm">Gestiona los productos del bar: crear, actualizar, desactivar y consultar.</p>
+              </div>
+            </div>
+            <form id="productForm" class="form-grid">
+              <input type="hidden" id="productId">
+              <label>Nombre del producto
+                <input id="productName" required placeholder="Ej. Jugo natural">
+              </label>
+              <label>Precio (USD)
+                <input id="productPrice" type="number" step="0.01" min="0" required placeholder="Ej. 1.50">
+              </label>
+              <div class="actions span-2">
+                <button class="button primary" type="submit" id="saveProductButton">Guardar producto</button>
+                <button class="button secondary" type="button" id="clearProductForm">Limpiar</button>
+              </div>
+              <p class="form-status span-2" id="productStatus" role="status"></p>
+            </form>
+            <div id="productsTableContainer" class="wallet-list"></div>
+          </div>
+        </section>
+
+        <section class="panel-view" data-panel-view="snack">
+          <div class="panel">
+            <h3>Comida Media Mañana</h3>
+            <p>Selecciona un estudiante, carga foto de la comida e ingresa el precio para registrar el consumo.</p>
+            <form id="snackForm" class="form-grid">
+              <label>Estudiante
+                <select id="snackStudent" required></select>
+              </label>
+              <label>Precio (USD)
+                <input id="snackPrice" type="number" step="0.01" min="0.01" placeholder="Ej. 1.50" required>
+              </label>
+              <label>Calorías estimadas (kcal)
+                <input id="snackCalories" type="number" min="0" step="1" readonly>
+              </label>
+              <label>Proteína estimada (g)
+                <input id="snackProtein" type="number" min="0" step="1" readonly>
+              </label>
+              <label class="span-2">Foto de la comida
+                <input type="file" id="snackPhoto" accept="image/*">
+              </label>
+              <div class="actions span-2">
+                <button class="button primary" type="submit">Registrar consumo</button>
+              </div>
+              <p class="form-status span-2" id="snackStatus" role="status"></p>
+            </form>
+          </div>
+        </section>
+
+        <section class="panel-view" data-panel-view="lunchMeal">
+          <div class="panel">
+            <h3>Lunch</h3>
+            <p>Selecciona un estudiante, carga foto del lunch e ingresa el precio para registrar el consumo.</p>
+            <form id="lunchMealForm" class="form-grid">
+              <label>Estudiante
+                <select id="lunchStudent" required></select>
+              </label>
+              <label>Precio (USD)
+                <input id="lunchPrice" type="number" step="0.01" min="0.01" placeholder="Ej. 2.75" required>
+              </label>
+              <label>Calorías estimadas (kcal)
+                <input id="lunchCalories" type="number" min="0" step="1" readonly>
+              </label>
+              <label>Proteína estimada (g)
+                <input id="lunchProtein" type="number" min="0" step="1" readonly>
+              </label>
+              <label class="span-2">Foto del lunch
+                <input type="file" id="lunchPhoto" accept="image/*">
+              </label>
+              <div class="actions span-2">
+                <button class="button primary" type="submit">Registrar consumo</button>
+              </div>
+              <p class="form-status span-2" id="lunchStatus" role="status"></p>
+            </form>
+          </div>
+        </section>
+
+        <section class="panel-view" data-panel-view="variousSales">
+          <div class="panel">
+            <h3>Ventas Varias</h3>
+            <p>Selecciona un estudiante activo y un producto creado para registrar la compra y descontar saldo.</p>
+            <form id="variousSalesForm" class="form-grid">
+              <label>Estudiante activo
+                <select id="variousSalesStudent" required></select>
+              </label>
+              <label>Producto
+                <select id="variousSalesProduct" required></select>
+              </label>
+              <label>Cantidad
+                <input id="variousSalesQty" type="number" min="1" step="1" value="1" required>
+              </label>
+              <label>Valor total (USD)
+                <input id="variousSalesTotal" type="text" readonly>
+              </label>
+              <div class="actions span-2">
+                <button class="button primary" type="submit">Registrar venta</button>
+              </div>
+              <p class="form-status span-2" id="variousSalesStatus" role="status"></p>
+            </form>
+          </div>
+        </section>
+
+        <section class="panel-view" data-panel-view="coins">
+          <div class="cards three">
+            <article class="card"><strong>EightCoins</strong><p>8 monedas acumuladas.</p></article>
+            <article class="card"><strong>Racha</strong><p>4 dias saludables.</p></article>
+            <article class="card"><strong>Recompensa</strong><p>Faltan 2 monedas.</p></article>
+          </div>
+          <button class="button primary" type="button" data-panel="rewards">Ver todos</button>
+        </section>
+
+        <section class="panel-view" data-panel-view="ranking">
+          <div class="panel">
+            <ol class="ranking-list">
+              <li><span>Ana</span><strong>18 pts</strong></li>
+              <li><span>David</span><strong>16 pts</strong></li>
+              <li><span>Maria</span><strong>13 pts</strong></li>
+            </ol>
+          </div>
+          <button class="button secondary" type="button" data-panel="rewards">Ver todos</button>
+        </section>
+
+        <section class="panel-view" data-panel-view="sap">
+          <div class="panel data-list">
+            <p><strong>Nombre:</strong> David Nunez</p>
+            <p><strong>Codigo SAP:</strong> 1234</p>
+            <p><strong>Curso:</strong> 1 BGU A</p>
+            <p><strong>Alergias:</strong> Ninguna registrada</p>
+          </div>
+        </section>
+
+        <section class="panel-view" data-panel-view="users">
+          <div class="panel">
+            <div class="panel-head">
+              <div>
+                <h3>Usuarios registrados</h3>
+                <p class="lead-sm">Filtra y consulta el listado por rol para estudiantes, padres, bar escolar o nutricionistas.</p>
+              </div>
+              <div class="user-actions">
+                <label>Filtrar por rol
+                  <select id="userRoleFilter">
+                    <option value="">Todos</option>
+                    <option value="student">Estudiantes</option>
+                    <option value="parent">Padres</option>
+                    <option value="bar">Bar escolar</option>
+                    <option value="nutrition">Nutricionistas</option>
+                    <option value="admin">Administradores</option>
+                  </select>
+                </label>
+              </div>
+            </div>
+            <div id="userRoleSummary" class="user-summary"></div>
+            <div id="userPanelNote" class="user-summary user-panel-note"></div>
+            <div id="parentChildControls" class="panel-head" hidden>
+              <div>
+                <h3>Vincular estudiante</h3>
+                <p class="lead-sm">Selecciona un estudiante para relacionarlo con tu cuenta de padre y usarlo en recargas y consultas.</p>
+              </div>
+              <div class="user-actions">
+                <label>Estudiante hijo
+                  <select id="parentChildSelect"></select>
+                </label>
+                <button type="button" class="button primary" id="linkParentChild">Vincular hijo</button>
+              </div>
+            </div>
+            <section class="panel user-editor" id="userEditor" hidden>
+              <div class="panel-head">
+                <h3 id="userEditorTitle">Editar usuario</h3>
+              </div>
+              <form id="userEditorForm" class="form-grid">
+                <label>Nombre<input name="editName" required></label>
+                <label>Codigo SAP<input name="editSap" required></label>
+                <label>Rol
+                  <select name="editRole" required>
+                    <option value="student">Estudiante</option>
+                    <option value="parent">Padre / Madre</option>
+                    <option value="bar">Bar escolar</option>
+                    <option value="nutrition">Nutricionista</option>
+                    <option value="admin">Administrador</option>
+                  </select>
+                </label>
+                <label id="userEditorChildLabel" hidden>Hijos/as
+                  <select name="editChildSap" id="editChildSap" multiple size="5">
+                    <option value="">Selecciona uno o más estudiantes</option>
+                  </select>
+                </label>
+                <label>Activo
+                  <select name="editActive">
+                    <option value="1">Sí</option>
+                    <option value="0">No</option>
+                  </select>
+                </label>
+                <label>Curso<input name="editCourse" placeholder="Ej. 1 BGU A"></label>
+                <label>Alergias<input name="editAllergies" placeholder="Ej. Ninguna"></label>
+                <div class="actions span-2">
+                  <button class="button primary" type="submit">Guardar cambios</button>
+                  <button class="button secondary" type="button" id="cancelEditUser">Cancelar</button>
+                </div>
+                <p class="form-status" id="userEditorStatus" role="status"></p>
+              </form>
+            </section>
+            <div id="userListContainer" class="user-list"></div>
+
+            <section class="panel" id="nutritionCarePanel" hidden>
+              <div class="panel-head">
+                <div>
+                  <h3>Formulario de atencion nutricional</h3>
+                  <p class="lead-sm">Selecciona un estudiante de la lista para registrar su atencion nutricional.</p>
+                </div>
+              </div>
+
+              <!-- Resumen nutricional por fechas -->
+              <div class="panel-head" style="margin-top:1rem">
+                <div>
+                  <h3>Historial nutricional del estudiante por fechas</h3>
+                  <p class="lead-sm">Calorias consumidas, proteinas, alimentos saludables y agua registrada por fecha.</p>
+                </div>
+              </div>
+              <div id="nutritionDateSummary">
+                <p>Selecciona un estudiante para ver su historial nutricional.</p>
+              </div>
+
+              <!-- Formulario de atencion -->
+              <div class="panel-head" style="margin-top:1.5rem">
+                <div>
+                  <h3>Nueva atencion nutricional</h3>
+                  <p class="lead-sm">Completa los datos clinicos y observaciones de la consulta para guardar el registro.</p>
+                </div>
+              </div>
+              <form id="nutritionCareForm" class="form-grid">
+                <label>Estudiante
+                  <select id="nutritionCareStudent" required></select>
+                </label>
+                <label>Fecha de atencion
+                  <input id="nutritionCareDate" type="date" required>
+                </label>
+                <label>Estado nutricional
+                  <select id="nutritionCareState" required>
+                    <option value="seguimiento">En seguimiento</option>
+                    <option value="estable">Estable</option>
+                    <option value="riesgo">En riesgo</option>
+                    <option value="alta">Alta nutricional</option>
+                  </select>
+                </label>
+                <label>Peso (kg)
+                  <input id="nutritionCareWeight" type="number" min="0" step="0.1" placeholder="Ej. 45.5">
+                </label>
+                <label>Talla (cm)
+                  <input id="nutritionCareHeight" type="number" min="0" step="0.1" placeholder="Ej. 155">
+                </label>
+                <label>IMC (calculado)
+                  <input id="nutritionCareBMI" type="text" readonly placeholder="Se calcula automaticamente">
+                </label>
+                <label>Presion arterial
+                  <input id="nutritionCareBloodPressure" type="text" placeholder="Ej. 110/70 mmHg">
+                </label>
+                <label>Proxima cita
+                  <input id="nutritionCareNextDate" type="date">
+                </label>
+                <label class="span-2">Evaluacion / Observaciones clinicas
+                  <textarea id="nutritionCareAssessment" rows="3" placeholder="Observaciones nutricionales, hallazgos y situacion actual del estudiante" required></textarea>
+                </label>
+                <label class="span-2">Plan nutricional y recomendaciones
+                  <textarea id="nutritionCarePlan" rows="3" placeholder="Recomendaciones alimentarias, objetivos y plan de accion" required></textarea>
+                </label>
+                <div class="actions span-2">
+                  <button class="button primary" type="submit" id="nutritionCareSave">Guardar atencion</button>
+                  <button class="button secondary" type="button" id="nutritionCareLoadRecords">Consultar registros de atenciones</button>
+                </div>
+                <p class="form-status" id="nutritionCareStatus" role="status"></p>
+              </form>
+
+              <!-- Registros de atenciones -->
+              <div class="panel-head" style="margin-top:1.5rem" id="nutritionCareRecordsHead" hidden>
+                <div>
+                  <h3>Registros de atenciones guardadas</h3>
+                  <p class="lead-sm">Historial de atenciones registradas por el nutricionista para el estudiante seleccionado.</p>
+                </div>
+              </div>
+              <div id="nutritionCareRecords" hidden>
+                <p>No hay atenciones registradas todavia.</p>
+              </div>
+            </section>
+          </div>
+        </section>
+
+        <section class="panel-view" data-panel-view="settings">
+          <form class="panel form-grid" id="settingsForm">
+            <label id="settingsNotifyLabel">Notificaciones<select name="notify"><option>Activadas</option><option>Desactivadas</option></select></label>
+            <label id="settingsLanguageLabel">Idioma<select name="language"><option>Espanol</option><option>English</option></select></label>
+            <button class="button primary" type="submit">Guardar configuracion</button>
+            <button class="button secondary" type="button" id="settingsCalendarButton" data-panel="calendar">Ver calendario</button>
+            <p class="form-status" id="settingsStatus" role="status"></p>
+          </form>
+
+          <section class="panel" id="adminReportPanel" hidden>
+            <div class="panel-head">
+              <div>
+                <h3>Reporte de usuarios</h3>
+                <p class="lead-sm">Consulta usuarios activos e inactivos, y cambia su estado desde aquí.</p>
+              </div>
+              <div class="user-actions">
+                <label>Filtro de estado
+                  <select id="adminReportFilter">
+                    <option value="all">Todos</option>
+                    <option value="active">Activos</option>
+                    <option value="inactive">Inactivos</option>
+                  </select>
+                </label>
+              </div>
+            </div>
+            <div id="adminReportList"></div>
+            <p class="form-status" id="adminReportStatus" role="status"></p>
+          </section>
+        </section>
+
+        <section class="panel-view" data-panel-view="camera">
+          <div class="panel">
+            <div class="card-head"><span class="metric-icon green">🤖</span><h3>Escanear lunch o codigo SAP</h3></div>
+            <p>Usa la camara para leer un QR/codigo de barras del estudiante o tomar una foto del lunch para simular el analisis nutricional.</p>
+            <div class="scanner-grid">
+              <div class="scanner-box">
+                <video id="scanVideo" playsinline muted aria-label="Vista de camara para escaneo"></video>
+                <div class="scan-frame" aria-hidden="true"></div>
+              </div>
+              <form class="scan-controls" id="scanForm">
+                <button class="button primary" type="button" id="startScan">Abrir camara</button>
+                <button class="button secondary" type="button" id="capturePhoto">Tomar foto</button>
+                <button class="button secondary" type="button" id="stopScan">Detener camara</button>
+                <label>Codigo manual
+                  <input id="manualCode" name="manualCode" placeholder="Ej. SAP-1234 o QR-DEMO" autocomplete="off">
+                </label>
+                <button class="button secondary" type="submit">Registrar codigo</button>
+                <label style="display:flex;align-items:center;gap:8px;margin-top:8px">
+                  <input type="checkbox" id="markHealthy">
+                  <span>Marcar como saludable</span>
+                  <label style="margin-left:12px">Porciones saludables
+                    <input id="healthyPortions" type="number" min="0" step="1" value="0" style="width:64px;margin-left:6px">
+                  </label>
+                </label>
+                <label>Subir foto del lunch
+                  <input type="file" id="foodPhoto" accept="image/*" capture="environment">
+                  <button type="button" class="button secondary" id="processPhoto">Procesar</button>
+                </label>
+                <canvas id="photoCanvas" hidden></canvas>
+                <img id="photoPreview" class="photo-preview" alt="Vista previa de la foto del lunch" hidden>
+              </form>
+            </div>
+            <div class="scan-result" id="scanResult" role="status" aria-live="polite">
+              Listo para escanear. En GitHub Pages la camara funciona bajo HTTPS.
+            </div>
+          </div>
+        </section>
+
+        <section class="panel-view" data-panel-view="history">
+          <div class="panel data-list">
+            <h3>Historial completo</h3>
+            <div class="tx-controls">
+              <label>Filtrar
+                <select id="txFilter">
+                  <option value="">Todos</option>
+                  <option value="purchase">Compras</option>
+                  <option value="recharge">Recargas</option>
+                </select>
+              </label>
+              <button class="button secondary" type="button" id="exportCsvButton">Exportar a CSV</button>
+            </div>
+            <div id="transactionList">
+              <p>No hay historial guardado todavía.</p>
+            </div>
+          </div>
+        </section>
+
+        <section class="panel-view" data-panel-view="rewards">
+          <div class="cards three">
+            <article class="card"><strong>Fruta gratis</strong><p>10 EightCoins</p></article>
+            <article class="card"><strong>Lunch saludable</strong><p>25 EightCoins</p></article>
+            <article class="card"><strong>Insignia oro</strong><p>40 EightCoins</p></article>
+          </div>
+        </section>
+
+        <section class="panel-view" data-panel-view="calendar">
+          <div class="panel calendar">
+            <h3>Calendario</h3>
+            <p><strong>15 mayo:</strong> cita nutricional</p>
+            <p><strong>17 mayo:</strong> revision de menu semanal</p>
+            <p><strong>20 mayo:</strong> entrega de recompensa</p>
+          </div>
+        </section>
+
+        <section class="panel-view" data-panel-view="language">
+          <div class="panel">
+            <h3>Cambiar idioma</h3>
+            <p>Selecciona el idioma de la interfaz.</p>
+            <div class="actions">
+              <button class="button primary" type="button" data-language="es">Espanol</button>
+              <button class="button secondary" type="button" data-language="en">English</button>
+            </div>
+            <p class="form-status" id="languageStatus" role="status"></p>
+          </div>
+        </section>
+      </div>
+    </section>
   </main>
 
-  <script src="app.js"></script>
+  <footer class="site-footer">
+    <span>NutriScan · Copyright 2026</span>
+  </footer>
+
+  <script src="app.js" defer></script>
 </body>
 </html>
