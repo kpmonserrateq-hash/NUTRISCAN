@@ -414,20 +414,349 @@
   let userCache = [];
   let productCache = [];
   let weeklyRankingCache = { at: 0, rows: [] };
-  const API_BASE = window.location.protocol === 'file:' ? 'http://localhost:3000' : '';
+  const API_BASE = window.NUTRISCAN_API_BASE || (window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1' ? 'http://localhost:3000' : '');
+  const USE_LOCAL_FALLBACK = !window.NUTRISCAN_API_BASE && window.location.hostname !== 'localhost' && window.location.hostname !== '127.0.0.1';
+  const LOCAL_DB_KEY = 'nutriscanLocalData';
+
+  const localDb = loadLocalDb();
+
+  function loadLocalDb() {
+    let stored = {};
+    try {
+      stored = JSON.parse(localStorage.getItem(LOCAL_DB_KEY) || '{}');
+    } catch (error) {
+      stored = {};
+    }
+    stored.users = Array.isArray(stored.users) ? stored.users : [];
+    stored.products = Array.isArray(stored.products) ? stored.products : [];
+    stored.nutritionHistory = Array.isArray(stored.nutritionHistory) ? stored.nutritionHistory : [];
+    stored.nutritionCare = Array.isArray(stored.nutritionCare) ? stored.nutritionCare : [];
+    stored.state = stored.state && typeof stored.state === 'object' ? stored.state : {};
+
+    if (!stored.users.length) {
+      const now = new Date().toISOString();
+      stored.users = [
+        {
+          id: 'user-1',
+          sap: '1234',
+          name: 'David Núñez',
+          role: 'student',
+          course: '1 BGU A',
+          allergies: 'Ninguna registrada',
+          childSap: [],
+          walletBalance: 90,
+          waterToday: 3,
+          healthyToday: 2,
+          transactions: [],
+          active: true,
+          createdAt: now,
+          updatedAt: now
+        },
+        {
+          id: 'user-2',
+          sap: '4321',
+          name: 'Mamá Núñez',
+          role: 'parent',
+          course: '',
+          allergies: '',
+          childSap: ['1234'],
+          walletBalance: 0,
+          waterToday: 0,
+          healthyToday: 0,
+          transactions: [],
+          active: true,
+          createdAt: now,
+          updatedAt: now
+        }
+      ];
+    }
+
+    if (!stored.products.length) {
+      const now = new Date().toISOString();
+      stored.products = [
+        { id: 'prod-1', name: 'Sándwich saludable', price: 2.5, active: true, createdAt: now, updatedAt: now },
+        { id: 'prod-2', name: 'Ensalada de fruta', price: 1.8, active: true, createdAt: now, updatedAt: now },
+        { id: 'prod-3', name: 'Yogur con granola', price: 1.2, active: true, createdAt: now, updatedAt: now }
+      ];
+    }
+
+    saveLocalDb(stored);
+    return stored;
+  }
+
+  function saveLocalDb(data = localDb) {
+    localStorage.setItem(LOCAL_DB_KEY, JSON.stringify(data));
+  }
+
+  function createLocalId(prefix = 'id') {
+    return `${prefix}-${Date.now()}-${Math.floor(Math.random() * 10000)}`;
+  }
 
   async function apiRequest(endpoint, options = {}) {
+    const method = (options.method || 'GET').toUpperCase();
     const url = `${API_BASE}${endpoint}`;
-    const response = await fetch(url, {
-      headers: { 'Content-Type': 'application/json' },
-      ...options
-    });
-    const result = await response.json().catch(() => null);
-    if (!response.ok) {
-      const message = result && result.error ? result.error : response.statusText || 'API error';
-      throw new Error(message);
+    const shouldUseLocal = USE_LOCAL_FALLBACK || !API_BASE;
+
+    if (shouldUseLocal && endpoint.startsWith('/api')) {
+      return await localApiRequest(endpoint, options);
     }
-    return result;
+
+    try {
+      const response = await fetch(url, {
+        headers: { 'Content-Type': 'application/json', ...(options.headers || {}) },
+        ...options
+      });
+      const result = await response.json().catch(() => null);
+      if (!response.ok) {
+        if (response.status === 404) {
+          return await localApiRequest(endpoint, options);
+        }
+        const message = result && result.error ? result.error : response.statusText || 'API error';
+        throw new Error(message);
+      }
+      return result;
+    } catch (error) {
+      if (!API_BASE) {
+        return await localApiRequest(endpoint, options);
+      }
+      if (endpoint.startsWith('/api')) {
+        return await localApiRequest(endpoint, options);
+      }
+      throw error;
+    }
+  }
+
+  function parseEndpoint(endpoint) {
+    const [path, queryString] = endpoint.split('?');
+    return { path: path.replace(/\/+$|^\/+/g, ''), params: new URLSearchParams(queryString || '') };
+  }
+
+  function serializeUser(user) {
+    return {
+      id: user.id,
+      sap: String(user.sap || '').trim(),
+      name: String(user.name || '').trim(),
+      role: String(user.role || '').trim(),
+      course: String(user.course || '').trim(),
+      allergies: String(user.allergies || '').trim(),
+      childSap: Array.isArray(user.childSap) ? user.childSap.map(String) : [],
+      walletBalance: Number(user.walletBalance || 0),
+      waterToday: Number(user.waterToday || 0),
+      healthyToday: Number(user.healthyToday || 0),
+      transactions: Array.isArray(user.transactions) ? user.transactions : [],
+      active: typeof user.active === 'undefined' ? true : Boolean(user.active),
+      createdAt: user.createdAt || new Date().toISOString(),
+      updatedAt: new Date().toISOString()
+    };
+  }
+
+  async function localApiRequest(endpoint, options = {}) {
+    const method = (options.method || 'GET').toUpperCase();
+    const { path, params } = parseEndpoint(endpoint);
+    const body = options.body ? JSON.parse(options.body) : null;
+    const now = new Date().toISOString();
+
+    function findUser(sap) {
+      return localDb.users.find((item) => String(item.sap || '').trim() === String(sap || '').trim());
+    }
+
+    function findProduct(id) {
+      return localDb.products.find((item) => String(item.id || '') === String(id || ''));
+    }
+
+    switch (path) {
+      case 'api/users': {
+        if (method === 'GET') {
+          let rows = localDb.users.slice();
+          if (params.has('role')) {
+            rows = rows.filter((item) => item.role === params.get('role'));
+          }
+          if (params.has('active')) {
+            const activeValue = params.get('active');
+            rows = rows.filter((item) => item.active === (activeValue === '1' || activeValue === 'true'));
+          }
+          return rows.map((item) => ({ ...item }));
+        }
+        if (method === 'POST') {
+          if (!body || !body.sap) throw new Error('sap required');
+          const existing = findUser(body.sap);
+          const user = serializeUser({ ...existing, ...body, createdAt: existing?.createdAt || now });
+          if (existing) {
+            const index = localDb.users.findIndex((item) => String(item.sap) === String(body.sap));
+            localDb.users[index] = user;
+          } else {
+            user.id = createLocalId('user');
+            localDb.users.push(user);
+          }
+          saveLocalDb();
+          return { ...user };
+        }
+        if (method === 'DELETE') {
+          localDb.users = [];
+          saveLocalDb();
+          return { success: true };
+        }
+        break;
+      }
+      default:
+        break;
+    }
+
+    if (/^api\/users\/.+$/i.test(path)) {
+      const sap = path.replace(/^api\/users\//i, '');
+      const existing = findUser(sap);
+      if (method === 'GET') {
+        if (!existing) throw new Error('Not found');
+        return { ...existing };
+      }
+      if (method === 'PATCH') {
+        if (!existing) throw new Error('Not found');
+        const allowed = ['sap', 'name', 'role', 'course', 'allergies', 'childSap', 'walletBalance', 'waterToday', 'healthyToday', 'transactions', 'active'];
+        const updated = { ...existing };
+        allowed.forEach((field) => {
+          if (typeof body?.[field] !== 'undefined') {
+            if (field === 'childSap') updated.childSap = Array.isArray(body.childSap) ? body.childSap.map(String) : [];
+            else if (field === 'walletBalance') updated.walletBalance = Number(body.walletBalance || 0);
+            else if (field === 'waterToday') updated.waterToday = Number(body.waterToday || 0);
+            else if (field === 'healthyToday') updated.healthyToday = Number(body.healthyToday || 0);
+            else if (field === 'transactions') updated.transactions = Array.isArray(body.transactions) ? body.transactions : [];
+            else if (field === 'active') updated.active = Boolean(body.active);
+            else updated[field] = body[field];
+          }
+        });
+        updated.updatedAt = now;
+        const index = localDb.users.findIndex((item) => String(item.sap || '').trim() === String(sap || '').trim());
+        localDb.users[index] = updated;
+        saveLocalDb();
+        return { ...updated };
+      }
+      if (method === 'DELETE') {
+        if (!existing) throw new Error('Not found');
+        localDb.users = localDb.users.filter((item) => String(item.sap || '').trim() !== String(sap || '').trim());
+        saveLocalDb();
+        return { success: true };
+      }
+    }
+
+    if (path === 'api/products') {
+      if (method === 'GET') {
+        let rows = localDb.products.slice();
+        if (params.has('active')) {
+          const activeValue = params.get('active');
+          rows = rows.filter((item) => item.active === (activeValue === '1' || activeValue === 'true'));
+        }
+        return rows.map((item) => ({ ...item }));
+      }
+      if (method === 'POST') {
+        const product = {
+          id: createLocalId('prod'),
+          name: String(body?.name || '').trim(),
+          price: Number(body?.price || 0),
+          active: typeof body?.active === 'undefined' ? true : Boolean(body.active),
+          createdAt: now,
+          updatedAt: now
+        };
+        localDb.products.push(product);
+        saveLocalDb();
+        return { ...product };
+      }
+    }
+
+    if (/^api\/products\/.+$/i.test(path)) {
+      const id = path.replace(/^api\/products\//i, '');
+      const product = findProduct(id);
+      if (method === 'GET') {
+        if (!product) throw new Error('Not found');
+        return { ...product };
+      }
+      if (method === 'PATCH') {
+        if (!product) throw new Error('Not found');
+        const index = localDb.products.findIndex((item) => String(item.id) === id);
+        const updated = { ...product, ...body, updatedAt: now };
+        updated.price = Number(updated.price || 0);
+        updated.active = typeof updated.active === 'undefined' ? product.active : Boolean(updated.active);
+        localDb.products[index] = updated;
+        saveLocalDb();
+        return { ...updated };
+      }
+    }
+
+    if (path === 'api/nutrition-history') {
+      if (method === 'GET') {
+        let rows = localDb.nutritionHistory.slice();
+        if (params.has('sap')) {
+          rows = rows.filter((item) => String(item.sap || '').trim() === String(params.get('sap') || '').trim());
+        }
+        return rows.map((item) => ({ ...item }));
+      }
+      if (method === 'POST') {
+        const record = {
+          id: createLocalId('nh'),
+          sap: String(body?.sap || '').trim(),
+          summaryDate: String(body?.summaryDate || getLocalSummaryDate()),
+          calories: Number(body?.calories || 0),
+          protein: Number(body?.protein || 0),
+          healthy: Number(body?.healthy || 0),
+          water: Number(body?.water || 0),
+          createdAt: now
+        };
+        localDb.nutritionHistory.push(record);
+        saveLocalDb();
+        return { ...record };
+      }
+    }
+
+    if (path === 'api/nutrition-care') {
+      if (method === 'GET') {
+        let rows = localDb.nutritionCare.slice();
+        if (params.has('nutritionistSap')) {
+          rows = rows.filter((item) => String(item.nutritionistSap || '').trim() === String(params.get('nutritionistSap') || '').trim());
+        }
+        if (params.has('studentSap')) {
+          rows = rows.filter((item) => String(item.studentSap || '').trim() === String(params.get('studentSap') || '').trim());
+        }
+        return rows.map((item) => ({ ...item }));
+      }
+      if (method === 'POST') {
+        const record = {
+          id: createLocalId('nc'),
+          nutritionistSap: String(body?.nutritionistSap || '').trim(),
+          studentSap: String(body?.studentSap || '').trim(),
+          attentionDate: String(body?.attentionDate || ''),
+          assessment: String(body?.assessment || ''),
+          plan: String(body?.plan || ''),
+          status: String(body?.status || ''),
+          weight: Number(body?.weight || 0),
+          height: Number(body?.height || 0),
+          bmi: Number(body?.bmi || 0),
+          bloodPressure: String(body?.bloodPressure || ''),
+          nextDate: String(body?.nextDate || ''),
+          createdAt: now
+        };
+        localDb.nutritionCare.push(record);
+        saveLocalDb();
+        return { ...record };
+      }
+    }
+
+    if (/^api\/state\/.+$/i.test(path)) {
+      const key = path.replace(/^api\/state\//i, '');
+      if (method === 'GET') {
+        return { value: typeof localDb.state[key] === 'undefined' ? null : localDb.state[key] };
+      }
+      if (method === 'PUT') {
+        localDb.state[key] = body?.value;
+        saveLocalDb();
+        return { value: localDb.state[key] };
+      }
+      if (method === 'DELETE') {
+        delete localDb.state[key];
+        saveLocalDb();
+        return { success: true };
+      }
+    }
+
+    throw new Error(`Unsupported local API endpoint: ${endpoint}`);
   }
 
   async function loadUsers(role = '') {

@@ -11,6 +11,17 @@ Proyecto SPA + backend Express para roles de estudiante/padre/bar/nutricion, wal
 3. Abre:
    - `http://localhost:3000/`
 
+## Ejecución en GitHub Pages
+
+Este proyecto ahora soporta una versión estática para GitHub Pages. En ese modo:
+
+- No se requiere ejecutar `server.js` en el host estático.
+- Los datos se almacenan y simulan en el navegador usando `localStorage`.
+- El sitio puede publicarse desde la rama `published-local`.
+- Las funciones de usuarios, productos, historial y estado funcionan localmente en el navegador.
+
+Si quieres usar un backend real, debes desplegar `server.js` en un host Node y configurar `window.NUTRISCAN_API_BASE` para apuntar a ese servicio.
+
 ## Persistencia en base de datos
 
 - La informacion critica se guarda en SQLite.
