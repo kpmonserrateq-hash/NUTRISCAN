@@ -1,9 +1,0 @@
-services:
-  - type: web
-    name: nutriscan
-    env: node
-    plan: free
-    buildCommand: npm ci
-    startCommand: npm start
-    branch: main
-    autoDeploy: true
