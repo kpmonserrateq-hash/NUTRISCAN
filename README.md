@@ -1,145 +1,112 @@
-REPLACE
-Proyecto backend + SPA ligero usando SQLite embebida. El repositorio está organizado para poder trabajar **localmente** o desde GitHub (Codespaces / Actions).
+# NUTRISCAN
+Plataforma inteligente de alimentación escolar para monitoreo nutricional, pagos internos, alertas preventivas y gamificación saludable.
+<img width="1016" height="664" alt="LOGO" src="https://github.com/user-attachments/assets/f0756180-6784-4792-bf12-3028c4c73c56" />
+## Estructura del proyecto
+- `index.html` — landing page principal y acceso a los dashboards (estudiante, padres, bar escolar, nutricionista).
+- `1B.html` … `7E.html` — pantallas/prototipos individuales por rol y flujo (B = Bar, E = Estudiante, G = Gestión/General, P = Padres).
+- `*.png` / `*.jpeg` — avatares, logos e ilustraciones usadas en las páginas.
+- `*.pdf` / `*.docx` — documentación del proyecto (investigación, whitepaper, cronograma, encuestas).
 
-Rápido — ejecutar en local:
+## Arquitectura del proyecto
+NutriScan está diseñado en capas, seguro y escalable:
+Capa de Usuarios: Estudiantes, padres, docentes, nutricionista, catering y administración.
+Capa de Acceso: Plataforma web responsiva + concepto de Tótem Inteligente (punto físico con pantalla en la institución).
+Capa Frontend: HTML5, CSS3, JavaScript vanilla, Tailwind CSS. 38 pantallas interactivas organizadas por rol.
+Capa Backend — Firebase: Firestore (base de datos), Firebase Auth (autenticación), Firebase Storage (imágenes), Cloud Functions (lógica de negocio con Admin SDK).
+Motor de IA: Google Cloud Vision API para identificación de alimentos por fotografía.
+Capa de Seguridad: Cloud Functions como única vía autorizada para escribir datos críticos (saldo, EightCoins, alertas). Firestore Security Rules por rol.
+Escalabilidad hacia Blockchain: La arquitectura de Cloud Functions y el modelo de datos están diseñados para agregar una capa Blockchain (registro inmutable de eventos críticos) en la versión de producción sin rediseño estructural.
+<img width="1657" height="576" alt="Arquitectura_NutriScan_v1" src="https://github.com/user-attachments/assets/1f513d2d-7611-4c90-8341-fd104cb247cb" />
+## Arquitectura del Sistema
+NutriScan está compuesto por los siguientes módulos:
+- Estudiante
+Registro de consumo
+Perfil
+EightCoins
+Recompensas
+- Padres
+Seguimiento de hábitos
+Reportes
+Alertas
+- Bar Escolar
+Gestión de ventas
+Registro de consumos
+- Nutricionista
+Seguimiento nutricional
+Recomendaciones
+- Docente
+Alertas de alimentación
+Seguimiento general
+- Administrador (Fase futura)
+Configuración institucional
+Reportes globales
+## Stack técnico
+- HTML5 + CSS3 (estilos inline por página)
+- [Tailwind CSS](https://tailwindcss.com/) vía CDN
+- [Lucide Icons](https://lucide.dev/) vía CDN
+- JavaScript vanilla (sin frameworks ni backend conectado; los datos mostrados son simulados/mock)
 
-```bash
-git clone <tu-repo-url>
-cd "Nutriscan 2"
-npm ci
-npm run seed    # crea/actualiza data/nutriscan.db
-npm start       # arranca API en http://localhost:3000
-```
-
-Abrir en el navegador: http://localhost:3000
-
-Archivos importantes:
-- `server/index.js` — servidor Express + API
-- `server/db.js` — migraciones y conexión SQLite
-- `public/` — SPA y assets estáticos servidos por Express
-- `data/nutriscan.db` — base de datos SQLite (seed incluida)
-
-Automatización en GitHub:
-- `.github/workflows/seed-and-commit.yml` — workflow que ejecuta `npm run seed` y commit/pu.sh de `data/nutriscan.db` cuando corresponde.
-
-Desarrollo en GitHub Codespaces / DevContainer:
-1. Abre el repositorio en Codespaces o usa `Remote - Containers` en VS Code.
-2. El contenedor (si se crea) ejecuta `npm ci` y `npm run seed` en `postCreateCommand`.
-
-Notas:
-- Si quieres desplegar el backend en producción, recomiento un servicio que soporte Node y archivos persistentes (DigitalOcean App Platform, Render, o un droplet). GitHub Pages sólo sirve la parte estática.
-
-Si quieres, configuro el deploy automático a un servicio (Render/Heroku/Vercel) o preparo un `Procfile`/`Dockerfile`.
-
-## Deploy automático a Render
-
-1. Crea un servicio Web en Render y conéctalo a este repositorio.
-2. Asegura que la rama de deploy sea `main`.
-3. En GitHub, agrega estos secrets en Settings > Secrets:
-   - `RENDER_API_KEY`
-   - `RENDER_SERVICE_ID`
-4. Cada push a `main` activará `.github/workflows/deploy-render.yml` y disparará el despliegue en Render.
-
-Para Render, el `Dockerfile` ya está listo y el servicio debe iniciarse en el puerto `3000`.
-# NutriScan
-
-Proyecto SPA + backend Express para roles de estudiante/padre/bar/nutricion, wallet, recargas, historial, escaneo y seguimiento de habitos.
-
-## Ejecucion local
-
-1. Instala dependencias:
-   - `npm install`
-2. Inicia servidor y frontend en el mismo puerto:
-   - `npm start`
-3. Abre:
-   - `http://localhost:3000/`
-
-## Ejecución en GitHub Pages
-
-Este proyecto ahora soporta una versión estática para GitHub Pages mediante la rama `gh-pages`.
-
-- No se requiere ejecutar `server.js` en el host estático.
-- Los datos se almacenan y simulan en el navegador usando `localStorage`.
-- El contenido publicado se toma de la carpeta `public/`.
-- Las funciones de usuarios, productos, historial y estado funcionan localmente en el navegador.
-
-GitHub Pages no renderiza automáticamente el HTML dentro del explorador de repositorios. Si abres el repo en GitHub, verás texto y archivos, pero el sitio real estará disponible en la URL de Pages de tu repositorio.
-
-Para usar el backend real, debes desplegar `server.js` en un host Node y configurar `window.NUTRISCAN_API_BASE` para apuntar a ese servicio.
-
-### Cómo se publica
-
-1. Se hace push a `main`.
-2. El workflow `.github/workflows/pages.yml` publica `public/` en la rama `gh-pages`.
-3. Activa GitHub Pages en Settings > Pages, seleccionando la rama `gh-pages` y la carpeta `/`.
-
-## Persistencia en base de datos
-
-- La informacion critica se guarda en SQLite.
-- Base de datos por defecto: `data/nutriscan.db`.
-- Se crean tablas automaticamente al iniciar (`users`, `products`, `app_state`).
-- Tambien puedes cambiar carpeta de datos con variable de entorno:
-  - `NUTRISCAN_DATA_DIR=/ruta/datos npm start`
-
-## Portabilidad (copiar carpeta a otra computadora)
-
-Para no perder informacion ni funcionalidad, copia toda la carpeta del proyecto incluyendo:
-
-- `data/nutriscan.db`
-- `package.json`
-- `server.js`, `db.js`, `app.js`, `index.html`, `styles.css`, `images/`
-
-Recomendacion: no copiar `node_modules` entre Linux y Windows. Si se copia, `ejecutar-nutriscan-windows.bat` lo repara automaticamente.
-
-Luego en la nueva computadora:
-
-1. `npm install`
-2. `npm start`
-3. abrir `http://localhost:3000/`
-
-## Ejecutar en Windows (forma mas sencilla)
-
-1. Copia toda la carpeta del proyecto en la PC Windows.
-2. Haz doble clic en:
-   - `ejecutar-nutriscan-windows.bat`
-
-Que hace este archivo automaticamente:
-
-- intenta instalar Node.js LTS si no existe (con `winget` o instalador local en `instaladores/`)
-- instala dependencias si es la primera vez
-- repara `node_modules` cuando detecta binarios incompatibles
-- inicia el servidor en `http://localhost:3000`
-- abre `http://localhost:3000/` en el navegador
-
-Nota: deja abierta la ventana de servidor mientras uses NutriScan.
-
-### Si aparece "no es una aplicacion Win32 valida" (sqlite3)
-
-Ese error ocurre cuando `node_modules` se copio desde otro sistema operativo (por ejemplo Linux) y los binarios nativos no coinciden con Windows.
-
-Solucion recomendada:
-
-1. Ejecuta de nuevo `ejecutar-nutriscan-windows.bat`.
-2. El script detecta el problema y reinstala dependencias automaticamente para Windows.
-
-Solucion manual (si hace falta):
-
-1. Borra carpeta `node_modules`.
-2. Ejecuta `npm install`.
-3. Ejecuta `npm start`.
-
-Tambien puedes usar reparacion de un clic:
-
-1. Ejecuta `reparar-dependencias-windows.bat`.
-2. Cuando termine, ejecuta `ejecutar-nutriscan-windows.bat`.
-
-Si copias `data/nutriscan.db`, conservas usuarios, productos, transacciones y estado de sesion persistido.
-
-## Archivos clave
-
-- `index.html` - UI principal
-- `app.js` - logica SPA y consumo de API
-- `styles.css` - estilos
-- `server.js` - API REST y archivos estaticos
-- `db.js` - conexion SQLite y migraciones
-- `data/nutriscan.db` - base de datos local
+# Integrantes
+– Líder: David Núnez 
+ – Secretario: Carlos Cruz
+ – Diseñador: Amelia Bueno 
+ – Investigador: Valentina Hernández
+# Problema que se quiere resolver
+En Eight Academy se identifican diversas situaciones relacionadas con la alimentación escolar que pueden afectar el bienestar de los estudiantes:
+Padres sin información inmediata
+Estudiantes que no comen a tiempo
+Filas largas en el bar escolar
+Riesgos por alergias o restricciones alimenticias
+Falta de seguimiento nutricional organizado
+Baja motivación hacia hábitos saludables
+# Propuesta de solución y cómo funciona.
+La solución propuesta es NutriScan, una plataforma inteligente de alimentación escolar que conecta tecnología, nutrición y educación.
+# Solución propuesta
+NutriScan permite:
+Identificar estudiantes de forma rápida
+Consultar saldo, lunch, alergias y menú
+Registrar historial de consumo
+Realizar pagos internos desde NutriScan Wallet
+Generar EightCoins por hábitos saludables
+Mostrar el estado del estudiante mediante un Avatar Nutricional
+Enviar alertas a padres, docentes y nutricionista
+Programar citas nutricionales
+Proteger información mediante Blockchain.
+# ODS al que se vincula
+ODS 3 — Salud y Bienestar: registro de alergias, historial de consumo, alertas preventivas, EightCoins para motivar hábitos saludables
+ODS 4 — Educación de Calidad (nuevo, reemplaza ODS 2): biblioteca nutricional, análisis de fotos por IA como retroalimentación, paneles educativos por rol, acompañamiento familiar y docente
+ODS 9 — Innovación e Infraestructura: Firebase, Google Cloud Vision, NutriWallet, EightCoins, arquitectura multi-rol — con tecnologías reales del proyecto
+# Tecnologías que se usarán
+Inteligencia Artificial.
+Blockchain.
+NutriScan Wallet.
+EightCoins.
+Desarrollo web.
+Base de datos en la nube.
+Firebase.
+Dashboards interactivos.
+Diseño UI/UX.
+Código SAP.
+Avatar Nutricional Interactivo.
+Tótem Inteligente.
+Paneles Inteligentes;
+# Validacion del Mercado
+## Encuesta digital:
+Se aplicó una encuesta digital en Eight Academy durante junio 2025. Se obtuvieron 52 respuestas válidas distribuidas en tres segmentos de usuarios: estudiantes (n=20), docentes (n=30) y personal del bar/catering (n=2).
+https://docs.google.com/document/d/1ypkRaBw1IamOtqYknleptn7EIzk6dksKC63busNnTkM/edit?usp=drive_link
+## Entrevista a: 
+### Nutricionista 
+https://drive.google.com/file/d/1eRui02g90H308NjMZhwpsPdHXktW57id/view?usp=drive_link
+### Servicio de Catering "Sumo y Resto".
+https://drive.google.com/file/d/1oU0GeQTOSw8NVWTXVkTQaTsOFaLzgGYR/view?usp=drive_link
+# Documentación
+## Página Web
+http://localhost:3000/
+## Arquitectura en figma
+https://half-pear-30137326.figma.site/
+## Video Demo
+https://drive.google.com/file/d/1kaO_vrdVseaKXUM8WVpm09GMMbvlHSRK/view?usp=drive_link
+## Presentación.
+https://docs.google.com/presentation/d/1lH7aYlEV6InCriuzth0_ADfn6DGOZ8Xa/edit?usp=drive_link&ouid=101896877784773350938&rtpof=true&sd=true
+## Infografía
+<img width="1024" height="1536" alt="ChatGPT Image 17 jun 2026, 07_28_23 p m" src="https://github.com/user-attachments/assets/69248f0b-4691-40f3-afe3-95a68737b251" />
