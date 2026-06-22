@@ -30,6 +30,17 @@ Notas:
 - Si quieres desplegar el backend en producción, recomiento un servicio que soporte Node y archivos persistentes (DigitalOcean App Platform, Render, o un droplet). GitHub Pages sólo sirve la parte estática.
 
 Si quieres, configuro el deploy automático a un servicio (Render/Heroku/Vercel) o preparo un `Procfile`/`Dockerfile`.
+
+## Deploy automático a Render
+
+1. Crea un servicio Web en Render y conéctalo a este repositorio.
+2. Asegura que la rama de deploy sea `main`.
+3. En GitHub, agrega estos secrets en Settings > Secrets:
+   - `RENDER_API_KEY`
+   - `RENDER_SERVICE_ID`
+4. Cada push a `main` activará `.github/workflows/deploy-render.yml` y disparará el despliegue en Render.
+
+Para Render, el `Dockerfile` ya está listo y el servicio debe iniciarse en el puerto `3000`.
 # NutriScan
 
 Proyecto SPA + backend Express para roles de estudiante/padre/bar/nutricion, wallet, recargas, historial, escaneo y seguimiento de habitos.

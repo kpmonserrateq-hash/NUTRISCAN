@@ -3,6 +3,9 @@
   "version": "1.0.0",
   "description": "Backend API para NutriScan usando SQLite",
   "main": "server/index.js",
+  "engines": {
+    "node": "18.x"
+  },
   "scripts": {
     "start": "node server/index.js",
     "seed": "node scripts/seed.js"
