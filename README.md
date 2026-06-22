@@ -101,7 +101,7 @@ https://drive.google.com/file/d/1eRui02g90H308NjMZhwpsPdHXktW57id/view?usp=drive
 https://drive.google.com/file/d/1oU0GeQTOSw8NVWTXVkTQaTsOFaLzgGYR/view?usp=drive_link
 # Documentación
 ## Página Web
-http://localhost:3000/
+https://kpmonserrateq-hash.github.io/NUTRISCAN/#inicio
 ## Arquitectura en figma
 https://half-pear-30137326.figma.site/
 ## Video Demo
