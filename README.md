@@ -56,14 +56,22 @@ Proyecto SPA + backend Express para roles de estudiante/padre/bar/nutricion, wal
 
 ## Ejecución en GitHub Pages
 
-Este proyecto ahora soporta una versión estática para GitHub Pages. En ese modo:
+Este proyecto ahora soporta una versión estática para GitHub Pages mediante la rama `gh-pages`.
 
 - No se requiere ejecutar `server.js` en el host estático.
 - Los datos se almacenan y simulan en el navegador usando `localStorage`.
-- El sitio puede publicarse desde la rama `published-local`.
+- El contenido publicado se toma de la carpeta `public/`.
 - Las funciones de usuarios, productos, historial y estado funcionan localmente en el navegador.
 
-Si quieres usar un backend real, debes desplegar `server.js` en un host Node y configurar `window.NUTRISCAN_API_BASE` para apuntar a ese servicio.
+GitHub Pages no renderiza automáticamente el HTML dentro del explorador de repositorios. Si abres el repo en GitHub, verás texto y archivos, pero el sitio real estará disponible en la URL de Pages de tu repositorio.
+
+Para usar el backend real, debes desplegar `server.js` en un host Node y configurar `window.NUTRISCAN_API_BASE` para apuntar a ese servicio.
+
+### Cómo se publica
+
+1. Se hace push a `main`.
+2. El workflow `.github/workflows/pages.yml` publica `public/` en la rama `gh-pages`.
+3. Activa GitHub Pages en Settings > Pages, seleccionando la rama `gh-pages` y la carpeta `/`.
 
 ## Persistencia en base de datos
 
