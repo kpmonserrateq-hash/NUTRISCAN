@@ -105,7 +105,7 @@ https://kpmonserrateq-hash.github.io/NUTRISCAN/#inicio
 ## Arquitectura en figma
 https://half-pear-30137326.figma.site/
 ## Video Demo
-https://drive.google.com/file/d/1kaO_vrdVseaKXUM8WVpm09GMMbvlHSRK/view?usp=drive_link
+https://drive.google.com/file/d/11zsIgXSDMo8FG8uT7vgIJJizskAFaVnh/view?usp=drive_link
 ## Presentación.
 https://docs.google.com/presentation/d/1lH7aYlEV6InCriuzth0_ADfn6DGOZ8Xa/edit?usp=drive_link&ouid=101896877784773350938&rtpof=true&sd=true
 ## Infografía
