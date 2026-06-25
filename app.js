@@ -433,41 +433,20 @@
     stored.nutritionCare = Array.isArray(stored.nutritionCare) ? stored.nutritionCare : [];
     stored.state = stored.state && typeof stored.state === 'object' ? stored.state : {};
 
-    if (!stored.users.length) {
+    const needsSeed = !stored.users.length || !stored.users.find((u) => u.sap === 'admin');
+    if (needsSeed) {
       const now = new Date().toISOString();
+      const keep = stored.users.filter((u) => !['1234','4321','1000','1111','7000','admin','0100','9100'].includes(String(u.sap)));
       stored.users = [
-        {
-          id: 'user-1',
-          sap: '1234',
-          name: 'David Núñez',
-          role: 'student',
-          course: '1 BGU A',
-          allergies: 'Ninguna registrada',
-          childSap: [],
-          walletBalance: 90,
-          waterToday: 3,
-          healthyToday: 2,
-          transactions: [],
-          active: true,
-          createdAt: now,
-          updatedAt: now
-        },
-        {
-          id: 'user-2',
-          sap: '4321',
-          name: 'Mamá Núñez',
-          role: 'parent',
-          course: '',
-          allergies: '',
-          childSap: ['1234'],
-          walletBalance: 0,
-          waterToday: 0,
-          healthyToday: 0,
-          transactions: [],
-          active: true,
-          createdAt: now,
-          updatedAt: now
-        }
+        ...keep,
+        { id: 'user-1', sap: '1234',  name: 'David Núñez',       role: 'student',   course: '1 BGU A', allergies: 'Ninguna registrada', childSap: [],       walletBalance: 90, waterToday: 3, healthyToday: 2, transactions: [], active: true, createdAt: now, updatedAt: now },
+        { id: 'user-2', sap: '4321',  name: 'Mamá Núñez',         role: 'parent',    course: '',        allergies: '',                   childSap: ['1234'], walletBalance: 0,  waterToday: 0, healthyToday: 0, transactions: [], active: true, createdAt: now, updatedAt: now },
+        { id: 'user-3', sap: '1000',  name: 'Estudiante ejemplo', role: 'student',   course: 'Curso A', allergies: '',                   childSap: [],       walletBalance: 20, waterToday: 0, healthyToday: 0, transactions: [], active: true, createdAt: now, updatedAt: now },
+        { id: 'user-4', sap: '1111',  name: 'Natalia Aumala',     role: 'bar',       course: '',        allergies: '',                   childSap: [],       walletBalance: 0,  waterToday: 0, healthyToday: 0, transactions: [], active: true, createdAt: now, updatedAt: now },
+        { id: 'user-5', sap: '7000',  name: 'Padre Demo',         role: 'parent',    course: '',        allergies: '',                   childSap: ['1000'], walletBalance: 0,  waterToday: 0, healthyToday: 0, transactions: [], active: true, createdAt: now, updatedAt: now },
+        { id: 'user-6', sap: 'admin', name: 'administrador',      role: 'admin',     course: '',        allergies: '',                   childSap: [],       walletBalance: 0,  waterToday: 0, healthyToday: 0, transactions: [], active: true, createdAt: now, updatedAt: now },
+        { id: 'user-7', sap: '0100',  name: 'Juan Bolaños',       role: 'nutrition', course: '',        allergies: '',                   childSap: [],       walletBalance: 0,  waterToday: 0, healthyToday: 0, transactions: [], active: true, createdAt: now, updatedAt: now },
+        { id: 'user-8', sap: '9100',  name: 'Estudiante Bar',     role: 'student',   course: '',        allergies: '',                   childSap: [],       walletBalance: 0,  waterToday: 0, healthyToday: 0, transactions: [], active: true, createdAt: now, updatedAt: now }
       ];
     }
 
@@ -1430,21 +1409,18 @@
   }
 
   function getSelectedVariousProduct() {
-    const selectedId = Number(variousSalesProduct?.value || 0);
+    const selectedId = String(variousSalesProduct?.value || '').trim();
     if (!selectedId) return null;
-    return getProducts().find((product) => product.id === selectedId) || null;
+    return getProducts().find((product) => String(product.id) === selectedId) || null;
   }
 
   function updateVariousSalesTotal() {
     if (!variousSalesTotal) return;
-    const product = getSelectedVariousProduct();
-    const qty = Math.max(1, Number(variousSalesQty?.value || 1));
-    if (!product) {
-      variousSalesTotal.value = '$0.00';
-      return;
-    }
-    const total = Number(product.price || 0) * qty;
-    variousSalesTotal.value = `$${formatCurrency(total)}`;
+    const qty = Math.max(1, parseInt(variousSalesQty?.value, 10) || 1);
+    const idx = variousSalesProduct ? variousSalesProduct.selectedIndex : -1;
+    const opt = idx >= 0 && variousSalesProduct ? variousSalesProduct.options[idx] : null;
+    const price = parseFloat(opt ? (opt.getAttribute('data-price') || '0') : '0') || 0;
+    variousSalesTotal.textContent = `$${formatCurrency(price * qty)}`;
   }
 
   function registerBarProductSale(options) {
@@ -2102,6 +2078,7 @@
           cards[0].querySelector('b').textContent = `${totalCalories || (lunch.calories || 0)} kcal · ${totalProtein} g prot`;
 
           const water = clampWaterGlasses(typeof current.waterToday === 'number' ? current.waterToday : 0);
+          const healthyToday = clampHealthyPortions(typeof current.healthyToday === 'number' ? current.healthyToday : 0);
           cards[1].querySelector('strong').textContent = 'Agua registrada';
           cards[1].querySelector('p').innerHTML = `<span id="waterCount">${water}</span> vasos de 8 recomendados.`;
           cards[1].querySelector('b').textContent = `${getWaterProgressPercent(water)}%`;
@@ -2116,13 +2093,13 @@
             cards[1].appendChild(actions);
           }
 
-          // Avatar based on nutrition and water
-          const avatarImg = selectAvatarImage(totalCalories, totalProtein, water);
-          const avatarLabel = selectAvatarLabel(totalCalories, totalProtein, water);
-          const avatarMessage = selectAvatarMessage(totalCalories, totalProtein, water);
+          // Avatar based on calories, protein, water and healthy foods
+          const avatarImg = selectAvatarImage(totalCalories, totalProtein, water, healthyToday);
+          const avatarLabel = selectAvatarLabel(totalCalories, totalProtein, water, healthyToday);
+          const avatarMessage = selectAvatarMessage(totalCalories, totalProtein, water, healthyToday);
           cards[2].querySelector('strong').textContent = 'Avatar emocional';
           if (avatarImg) {
-            cards[2].querySelector('p').innerHTML = `<img src="${avatarImg}" alt="avatar ${avatarLabel}" style="width:56px;height:56px">`;
+            cards[2].querySelector('p').innerHTML = `<img src="${avatarImg}" alt="avatar ${avatarLabel}" style="width:72px;height:72px;display:block;margin:0 auto 4px"><small style="font-weight:400;color:#555">${avatarMessage}</small>`;
             cards[2].querySelector('b').textContent = avatarLabel;
           } else {
             cards[2].querySelector('p').textContent = avatarMessage;
@@ -2585,42 +2562,58 @@
     return Number(((clampWaterGlasses(glasses) / 8) * 100).toFixed(1));
   }
 
-  function selectAvatarImage(calories, protein, water) {
-    // For students: require calories and protein data, then choose avatar by water level.
+  function avatarScore(calories, protein, water, healthy) {
+    const cal = Number(calories || 0);
+    const prot = Number(protein || 0);
+    const w = clampWaterGlasses(water);
+    const h = clampHealthyPortions(healthy);
+    const waterPts   = w >= 8 ? 4 : w >= 6 ? 3 : w >= 4 ? 2 : w >= 2 ? 1 : 0;
+    const calPts     = cal  >= 500 ? 2 : cal  > 0 ? 1 : 0;
+    const protPts    = prot >= 25  ? 2 : prot > 0 ? 1 : 0;
+    const healthyPts = h >= 2 ? 2 : h >= 1 ? 1 : 0;
+    return waterPts + calPts + protPts + healthyPts;
+  }
+
+  function selectAvatarImage(calories, protein, water, healthy) {
     try {
-      const hasNutrition = Number(calories || 0) > 0 && Number(protein || 0) > 0;
-      if (!hasNutrition) return null;
-      const normalizedWater = clampWaterGlasses(water);
-      if (normalizedWater >= 8) return `images/${encodeURIComponent('AVATAR FELIZ.png')}`;
-      if (normalizedWater >= 6) return `images/${encodeURIComponent('AVATAR CANSADO.png')}`;
-      if (normalizedWater >= 4) return `images/${encodeURIComponent('AVATAR DE ATENCIÓNpng.png')}`;
-      return null;
+      const score = avatarScore(calories, protein, water, healthy);
+      if (score === 0) return `images/${encodeURIComponent('AVATAR CANSADO.png')}`;
+      if (score <= 2)  return `images/${encodeURIComponent('AVATAR DE ALERTA.png')}`;
+      if (score <= 4)  return `images/${encodeURIComponent('AVATAR DE ATENCIÓNpng.png')}`;
+      if (score <= 6)  return `images/${encodeURIComponent('AVATAR CANSADO.png')}`;
+      if (score <= 8)  return `images/${encodeURIComponent('AVATAR MOTIVADO.png')}`;
+      if (score === 9) return `images/${encodeURIComponent('AVATAR FELIZ.png')}`;
+      return `images/${encodeURIComponent('AVATAR SALUDABLE.png')}`;
     } catch (e) {
       return null;
     }
   }
 
-  function selectAvatarLabel(calories, protein, water) {
+  function selectAvatarLabel(calories, protein, water, healthy) {
     try {
-      const hasNutrition = Number(calories || 0) > 0 && Number(protein || 0) > 0;
-      if (!hasNutrition) return 'Sin datos';
-      const normalizedWater = clampWaterGlasses(water);
-      if (normalizedWater >= 8) return 'Feliz';
-      if (normalizedWater >= 6) return 'Cansado';
-      if (normalizedWater >= 4) return 'Atencion';
-      return 'En progreso';
+      const score = avatarScore(calories, protein, water, healthy);
+      if (score === 0) return 'Sin datos';
+      if (score <= 2)  return 'En alerta';
+      if (score <= 4)  return 'Necesitas atencion';
+      if (score <= 6)  return 'Cansado';
+      if (score <= 8)  return 'Motivado';
+      if (score === 9) return 'Feliz';
+      return 'Saludable';
     } catch (e) {
       return 'Sin datos';
     }
   }
 
-  function selectAvatarMessage(calories, protein, water) {
+  function selectAvatarMessage(calories, protein, water, healthy) {
     try {
-      const hasNutrition = Number(calories || 0) > 0 && Number(protein || 0) > 0;
-      if (!hasNutrition) return 'Registra calorias y proteina para activar el avatar emocional.';
-      const normalizedWater = clampWaterGlasses(water);
-      if (normalizedWater < 4) return 'Sigue hidratandote para mejorar tu estado emocional.';
-      return 'Tu avatar refleja tu progreso de hoy.';
+      const score = avatarScore(calories, protein, water, healthy);
+      if (score === 0) return 'Registra tus comidas, agua y alimentos saludables para activar tu avatar.';
+      if (score <= 2)  return 'Tu cuerpo necesita mas energia. Registra comidas completas y toma mas agua.';
+      if (score <= 4)  return 'Vas por buen camino, pero necesitas mas nutricion y agua hoy.';
+      if (score <= 6)  return 'Buen esfuerzo. Mejora tu hidratacion y agrega mas alimentos saludables.';
+      if (score <= 8)  return '!Muy bien! Estas cuidando tu nutricion. Sigue asi.';
+      if (score === 9) return '!Excelente dia! Tu nutricion y agua estan en muy buen nivel.';
+      return '!Perfecto! Hoy cumpliste todos tus objetivos de nutricion y salud.';
     } catch (e) {
       return 'No se pudo calcular el estado emocional.';
     }
@@ -4108,6 +4101,10 @@
   });
 
   variousSalesQty?.addEventListener('input', () => {
+    updateVariousSalesTotal();
+  });
+
+  variousSalesQty?.addEventListener('change', () => {
     updateVariousSalesTotal();
   });
 
