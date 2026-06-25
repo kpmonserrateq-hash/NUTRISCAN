@@ -171,8 +171,8 @@ main {
 }
 .view { display: none; padding: 52px 0; }
 .view.is-active { display: block; }
-.hero-view.is-active {
-  min-height: calc(100vh - 152px);
+hero-view.is-active, .hero-view.is-active {
+  min-height: calc(100vh - 132px);
   display: grid;
   grid-template-columns: minmax(0, 1.05fr) minmax(330px, .82fr);
   align-items: center;
@@ -189,7 +189,7 @@ main {
 h1, h2, h3, p { overflow-wrap: anywhere; }
 h1 {
   color: var(--navy);
-  font-size: clamp(2.4rem, 5.8vw, 4.7rem);
+  font-size: clamp(1.8rem, 4.8vw, 3.2rem);
   line-height: 1;
   margin: 0;
   letter-spacing: 0;
