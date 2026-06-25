@@ -433,41 +433,20 @@
     stored.nutritionCare = Array.isArray(stored.nutritionCare) ? stored.nutritionCare : [];
     stored.state = stored.state && typeof stored.state === 'object' ? stored.state : {};
 
-    if (!stored.users.length) {
+    const needsSeed = !stored.users.length || !stored.users.find((u) => u.sap === 'admin');
+    if (needsSeed) {
       const now = new Date().toISOString();
+      const keep = stored.users.filter((u) => !['1234','4321','1000','1111','7000','admin','0100','9100'].includes(String(u.sap)));
       stored.users = [
-        {
-          id: 'user-1',
-          sap: '1234',
-          name: 'David Núñez',
-          role: 'student',
-          course: '1 BGU A',
-          allergies: 'Ninguna registrada',
-          childSap: [],
-          walletBalance: 90,
-          waterToday: 3,
-          healthyToday: 2,
-          transactions: [],
-          active: true,
-          createdAt: now,
-          updatedAt: now
-        },
-        {
-          id: 'user-2',
-          sap: '4321',
-          name: 'Mamá Núñez',
-          role: 'parent',
-          course: '',
-          allergies: '',
-          childSap: ['1234'],
-          walletBalance: 0,
-          waterToday: 0,
-          healthyToday: 0,
-          transactions: [],
-          active: true,
-          createdAt: now,
-          updatedAt: now
-        }
+        ...keep,
+        { id: 'user-1', sap: '1234',  name: 'David Núñez',       role: 'student',   course: '1 BGU A', allergies: 'Ninguna registrada', childSap: [],       walletBalance: 90, waterToday: 3, healthyToday: 2, transactions: [], active: true, createdAt: now, updatedAt: now },
+        { id: 'user-2', sap: '4321',  name: 'Mamá Núñez',         role: 'parent',    course: '',        allergies: '',                   childSap: ['1234'], walletBalance: 0,  waterToday: 0, healthyToday: 0, transactions: [], active: true, createdAt: now, updatedAt: now },
+        { id: 'user-3', sap: '1000',  name: 'Estudiante ejemplo', role: 'student',   course: 'Curso A', allergies: '',                   childSap: [],       walletBalance: 20, waterToday: 0, healthyToday: 0, transactions: [], active: true, createdAt: now, updatedAt: now },
+        { id: 'user-4', sap: '1111',  name: 'Natalia Aumala',     role: 'bar',       course: '',        allergies: '',                   childSap: [],       walletBalance: 0,  waterToday: 0, healthyToday: 0, transactions: [], active: true, createdAt: now, updatedAt: now },
+        { id: 'user-5', sap: '7000',  name: 'Padre Demo',         role: 'parent',    course: '',        allergies: '',                   childSap: ['1000'], walletBalance: 0,  waterToday: 0, healthyToday: 0, transactions: [], active: true, createdAt: now, updatedAt: now },
+        { id: 'user-6', sap: 'admin', name: 'administrador',      role: 'admin',     course: '',        allergies: '',                   childSap: [],       walletBalance: 0,  waterToday: 0, healthyToday: 0, transactions: [], active: true, createdAt: now, updatedAt: now },
+        { id: 'user-7', sap: '0100',  name: 'Juan Bolaños',       role: 'nutrition', course: '',        allergies: '',                   childSap: [],       walletBalance: 0,  waterToday: 0, healthyToday: 0, transactions: [], active: true, createdAt: now, updatedAt: now },
+        { id: 'user-8', sap: '9100',  name: 'Estudiante Bar',     role: 'student',   course: '',        allergies: '',                   childSap: [],       walletBalance: 0,  waterToday: 0, healthyToday: 0, transactions: [], active: true, createdAt: now, updatedAt: now }
       ];
     }
 
