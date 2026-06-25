@@ -816,6 +816,10 @@ a:focus-visible {
 }
 
 @media (max-width: 1050px) {
+  .hero-view.is-active {
+    grid-template-columns: 1fr;
+    min-height: auto;
+  }
   .dashboard-view.is-active {
     width: min(1240px, 100%);
     margin-left: auto;
@@ -823,8 +827,17 @@ a:focus-visible {
   }
   .sidebar { position: static; }
   .sidebar nav { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .three,
+  .four { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .two-col { grid-template-columns: 1fr; }
 }
 @media (max-width: 900px) {
+  .site-header {
+    flex-wrap: wrap;
+    padding-top: 12px;
+    padding-bottom: 12px;
+  }
+  .brand { flex: 1 1 100%; }
   .menu-toggle { display: block; }
   .main-nav {
     position: absolute;
@@ -838,8 +851,17 @@ a:focus-visible {
     background: white;
     border-bottom: 1px solid var(--line);
     box-shadow: var(--shadow);
+    margin-left: 0;
+    width: 100%;
   }
   .main-nav.open { display: flex; }
+  .main-nav a,
+  .main-nav button {
+    width: 100%;
+    justify-content: center;
+    text-align: center;
+    padding: 10px 0;
+  }
   .hero-view.is-active { grid-template-columns: 1fr; }
   .three,
   .four { grid-template-columns: repeat(2, minmax(0, 1fr)); }
@@ -848,8 +870,13 @@ a:focus-visible {
   .dash-top { flex-direction: column; }
 }
 @media (max-width: 620px) {
+  .site-header { padding: 10px 14px; }
+  .brand { width: 100%; justify-content: flex-start; }
+  .brand img { width: 42px; height: 42px; }
+  .brand strong { font-size: 1.2rem; }
   .brand small { display: none; }
-  .view { padding: 38px 0; }
+  .hero-view.is-active { padding-top: 24px; padding-bottom: 24px; }
+  .view { padding: 32px 0; }
   .three,
   .four,
   .form-grid,
@@ -860,8 +887,13 @@ a:focus-visible {
   .button,
   .actions,
   .toolbar { width: 100%; }
+  .main-nav { position: static; }
   .sidebar nav { grid-template-columns: 1fr; }
-  .site-footer { flex-direction: column; }
+  .site-footer {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  .site-footer > * { width: 100%; }
 }
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after {
