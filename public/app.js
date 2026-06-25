@@ -1430,9 +1430,9 @@
   }
 
   function getSelectedVariousProduct() {
-    const selectedId = Number(variousSalesProduct?.value || 0);
+    const selectedId = String(variousSalesProduct?.value || '').trim();
     if (!selectedId) return null;
-    return getProducts().find((product) => product.id === selectedId) || null;
+    return getProducts().find((product) => String(product.id) === selectedId) || null;
   }
 
   function updateVariousSalesTotal() {
@@ -4108,6 +4108,10 @@
   });
 
   variousSalesQty?.addEventListener('input', () => {
+    updateVariousSalesTotal();
+  });
+
+  variousSalesQty?.addEventListener('change', () => {
     updateVariousSalesTotal();
   });
 
