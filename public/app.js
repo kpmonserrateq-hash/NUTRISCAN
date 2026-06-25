@@ -1437,14 +1437,16 @@
 
   function updateVariousSalesTotal() {
     if (!variousSalesTotal) return;
-    const product = getSelectedVariousProduct();
     const qty = Math.max(1, Number(variousSalesQty?.value || 1));
-    if (!product) {
+    const selectedOption = variousSalesProduct
+      ? variousSalesProduct.options[variousSalesProduct.selectedIndex]
+      : null;
+    const price = Number(selectedOption?.dataset?.price || 0);
+    if (!price) {
       variousSalesTotal.value = '$0.00';
       return;
     }
-    const total = Number(product.price || 0) * qty;
-    variousSalesTotal.value = `$${formatCurrency(total)}`;
+    variousSalesTotal.value = `$${formatCurrency(price * qty)}`;
   }
 
   function registerBarProductSale(options) {
