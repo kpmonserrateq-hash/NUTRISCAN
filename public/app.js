@@ -1437,16 +1437,11 @@
 
   function updateVariousSalesTotal() {
     if (!variousSalesTotal) return;
-    const qty = Math.max(1, Number(variousSalesQty?.value || 1));
-    const selectedOption = variousSalesProduct
-      ? variousSalesProduct.options[variousSalesProduct.selectedIndex]
-      : null;
-    const price = Number(selectedOption?.dataset?.price || 0);
-    if (!price) {
-      variousSalesTotal.value = '$0.00';
-      return;
-    }
-    variousSalesTotal.value = `$${formatCurrency(price * qty)}`;
+    const qty = Math.max(1, parseInt(variousSalesQty?.value, 10) || 1);
+    const idx = variousSalesProduct ? variousSalesProduct.selectedIndex : -1;
+    const opt = idx >= 0 && variousSalesProduct ? variousSalesProduct.options[idx] : null;
+    const price = parseFloat(opt ? (opt.getAttribute('data-price') || '0') : '0') || 0;
+    variousSalesTotal.textContent = `$${formatCurrency(price * qty)}`;
   }
 
   function registerBarProductSale(options) {

@@ -370,6 +370,17 @@ input, select, textarea {
   color: var(--ink);
   background: white;
 }
+output {
+  display: block;
+  width: 100%;
+  border: 1px solid #d9e1ec;
+  border-radius: 12px;
+  padding: 12px 14px;
+  color: var(--ink);
+  background: #f0fdf4;
+  font-weight: 800;
+  font-size: 1.1rem;
+}
 input:focus,
 select:focus,
 textarea:focus,
