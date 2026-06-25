@@ -2617,7 +2617,7 @@
     } catch (e) {
       return 'No se pudo calcular el estado emocional.';
     }
-  }}
+  }
 
   function humanizeMeta(meta) {
     if (!meta) return '';
